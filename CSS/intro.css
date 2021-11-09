@@ -38,6 +38,7 @@
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
 }
+
 .tutorial-btn:hover,
 .infinite-btn:hover,
 .about-btn:hover {
