@@ -1,0 +1,42 @@
+<div class="container">
+    <h1 class="display-1">Summary</h1>
+    <p>
+        Thank you for your help finding the animals!
+    </p>
+    <p>
+        Here are your statistics!
+    </p>
+    <table class="table table-hover">
+        <tr>
+            <th>Number of Wins</th>
+            <td>@Wins</td>
+        </tr>
+        <tr>
+            <th>Total Number of Games</th>
+            <td>9</td>
+        </tr>
+        <tr>
+            <th>Number of Correct Unwinnable Declarations</th>
+            <td>@CorrectUnwinnables</td>
+        </tr>
+        <tr>
+            <th>Total Possible Number of Declarations</th>
+            <td>2</td>
+        </tr>
+    </table>
+    <p>
+        Here's some sick links so you can explore this topic more!
+    </p>
+    <button class="btn btn-md btn-primary" @onclick="()=>SummaryContinue.InvokeAsync(true)">Home</button>
+    <button class="btn btn-md btn-primary" @onclick="()=>SummaryContinue.InvokeAsync(false)">Infinite</button>
+</div>
+
+
+@code {
+    [Parameter]
+    public EventCallback<bool> SummaryContinue { get; set; }
+    [Parameter]
+    public int Wins { get; set; }
+    [Parameter]
+    public int CorrectUnwinnables { get; set; }
+}

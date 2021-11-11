@@ -1,0 +1,86 @@
+<div class="container">
+    @if (!UserWon && GamePossibleToWin)
+    {
+        int count = 0;
+        @foreach(var card in TheDeck.Cards)
+        {
+            int index = count;
+            if (card == 0)
+            {
+                <img src=@Cards[CardFaces[index]] alt="card" width="200px" @onclick="() => CardClicked(index)">
+            }
+            else if (card == 1)
+            {
+                <img src="../img/back_card.png" alt="card" width="200px" @onclick="() => CardClicked(index)">
+            }
+            else
+            {
+                <img src="../img/blank_card.png" alt="card" width="200px" @onclick="() => CardClicked(index)">
+            }
+            count++;
+        }
+    }
+    else if (UserWon && NumberOfRounds != 5)
+    {
+        Wins++;
+        <h1 class="display-1">You Won!</h1>
+        <button class="btn btn-md btn-primary" @onclick="NextGame">Next Game!</button>
+    }
+    else if (!GamePossibleToWin && !UserWon && NumberOfRounds == 4)
+    {
+        <h1 class="display-1"> You Lost!</h1>
+        <p>But, why? This last game was actually unwinnable. Even if you played it perfectly, you would not have
+            been able to win. Click next to find out why!
+        </p>
+        <button class="btn btn-md btn-primary" @onclick="() => FirstRoundComplete.InvokeAsync(Wins)">Next</button>
+    }
+    else if (!GamePossibleToWin && !UserWon)
+    {
+        <h1 class="display-1">You Lost!</h1>
+        <button class="btn btn-md btn-primary" @onclick="NextGame">Next Game!</button>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<int> FirstRoundComplete { get; set; }
+    public Deck TheDeck { get; set; }
+    public bool UserWon { get; set; } = false;
+    public int NumberOfRounds { get; set; } = 0;
+    public int Wins { get; set; } = 0;
+    public bool GamePossibleToWin { get; set; } = true;
+    public string[] Cards = new string[] {
+        "../img/bear_card.png", "../img/cat_card.png", "../img/flamingo_card.png", "../img/iguana_card.png",
+        "../img/jellyfish_card.png", "../img/kangoroo_card.png", "../img/lion_card.png", "../img/owl_card.png"
+    };
+    public int[] CardFaces = new int[5];
+    Random random = new Random(DateTime.Now.Millisecond);
+
+    protected override void OnInitialized()
+    {
+        TheDeck = new Deck(1, NumberOfRounds);
+        GamePossibleToWin = true;
+
+        for (int i = 0; i < 5; i++)
+            CardFaces[i] = random.Next(Cards.Length);
+
+        base.OnInitialized();
+    }
+
+    public void CardClicked(int card)
+    {
+        TheDeck.ChangeCard(card);
+        UserWon = TheDeck.CheckWin();
+        GamePossibleToWin = TheDeck.WinPossible(0);
+    }
+     
+    public void NextGame()
+    {
+        NumberOfRounds++;
+        TheDeck = new Deck(1, NumberOfRounds);
+        for (int i = 0; i < 5; i++)
+            CardFaces[i] = random.Next(Cards.Length);
+        UserWon = false;
+        GamePossibleToWin = true;
+    }
+}

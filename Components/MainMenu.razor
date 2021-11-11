@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <img src="../img/animals-main-menu.jpeg">
+        </div>
+        <div class="col">
+            <h1 class="display-1">Zoo Breakout!</h1>
+            <button class="btn btn-md btn-primary" @onclick="@(() => StoryChosen.InvokeAsync(true))">Story Mode</button>
+            <button class="btn btn-md btn-secondary" @onclick="@(() => InfiniteChosen.InvokeAsync(true))">Infinite Mode</button>
+            <button class="btn btn-md btn-secondary" @onclick="@(() => AboutChosen.InvokeAsync(true))">About Us</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<bool> StoryChosen { get; set; }
+    [Parameter]
+    public EventCallback<bool> InfiniteChosen { get; set; }
+    [Parameter]
+    public EventCallback<bool> AboutChosen { get; set; }
+}

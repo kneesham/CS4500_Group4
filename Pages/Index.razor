@@ -1,0 +1,95 @@
+@page "/"
+
+<div class="container border border-3 border-dark rounded p-5 shadow" style="height: 600px;" hidden="@MainMenuHidden">
+    <MainMenu StoryChosen="StoryChosen" InfiniteChosen="InfiniteChosen" AboutChosen="AboutChosen" />
+</div>
+<div class="container border border-3 border-dark rounded p-5 shadow" hidden="@TutorialHidden">
+    <Tutorial TutorialContinue="TutorialContinue" />
+</div>
+<div class="container border border-3 border-dark rounded p-5 shadow" style="height: 600px;" hidden="@FirstRoundHidden">
+    <FirstRound FirstRoundComplete="FirstRoundComplete" />
+</div>
+<div class="container border border-3 border-dark rounded p-5 shadow" hidden="@ExplanationHidden">
+    <Explanation ExplanationContinue="ExplanationContinue" />
+</div>
+<div class="container border border-3 border-dark rounded p-5 shadow" style="height: 600px;" hidden="@SecondRoundHidden">
+    <SecondRound SecondRoundComplete="SecondRoundComplete" />
+</div>
+<div class="container border border-3 border-dark rounded p-5 shadow" hidden="@SummaryHidden">
+    <Summary SummaryContinue="SummaryContinue" Wins="Wins" CorrectUnwinnables="CorrectUnwinnables" />
+</div>
+
+@code {
+    public bool MainMenuHidden { get; set; } = false;
+    public bool TutorialHidden { get; set; } = true;
+    public bool FirstRoundHidden { get; set; } = true;
+    public bool ExplanationHidden { get; set; } = true;
+    public bool SecondRoundHidden { get; set; } = true;
+    public bool SummaryHidden { get; set; } = true;
+    public bool InfiniteHidden { get; set; } = true;
+    public int Wins { get; set; } = 0;
+    public int CorrectUnwinnables { get; set; } = 0;
+
+
+    public void StoryChosen(bool story) 
+    {
+        Console.WriteLine($"story: {story}");
+        MainMenuHidden = true;
+        TutorialHidden = false;
+    }
+
+    public void InfiniteChosen(bool infinite) 
+    {
+        Console.WriteLine($"infinite: {infinite}");
+    }
+
+    public void AboutChosen(bool about) 
+    {
+        Console.WriteLine($"about: {about}");
+    }
+
+    public void TutorialContinue(bool continued) 
+    {
+        Console.WriteLine($"coninued: {continued}");
+        TutorialHidden = true;
+        FirstRoundHidden = false;
+    }
+
+    public void FirstRoundComplete(int wins) 
+    {
+        Console.WriteLine($"complete: {wins}");
+        FirstRoundHidden = true;
+        ExplanationHidden = false;
+        Wins += wins;
+    }
+
+    public void ExplanationContinue(bool continued)
+    {
+        Console.WriteLine($"continued: {continued}");
+        ExplanationHidden = true;
+        SecondRoundHidden = false;
+    }
+
+    public void SecondRoundComplete(Tuple<int, int> tuple)
+    {
+        Console.WriteLine($"complete: {tuple.Item1} {tuple.Item2}");
+        SecondRoundHidden = true;
+        SummaryHidden = false;
+        Wins += tuple.Item1;
+        CorrectUnwinnables += tuple.Item2;
+    }
+
+    public void SummaryContinue(bool continued)
+    {
+        Console.WriteLine($"continued: {continued}");
+        SummaryHidden = true;
+        if (continued)
+        {
+            MainMenuHidden = false;
+        }
+        else
+        {
+            InfiniteHidden = false;
+        }
+    }
+}

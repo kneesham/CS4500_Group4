@@ -1,0 +1,160 @@
+<div class="container">
+    @UnwinnableString
+    @if (!UserWon && NumberOfRounds != 5 && CanStillPlay)
+    {
+        int count = 0;
+        <div class="row">
+            @foreach(var card in TheDeck.Cards)
+            {
+                int index = count;
+                <div class="col justify-content-center">
+                    @if (card == 0)
+                    {
+                        <img src=@Cards[CardFaces[index]] alt="card" width="100px" @onclick="() => CardClicked(index)">
+                    }
+                    else if (card == 1)
+                    {
+                        <img src="../img/back_card.png" alt="card" width="100px" @onclick="() => CardClicked(index)">
+                    }
+                    else
+                    {
+                        <img src="../img/blank_card.png" alt="card" width="100px" @onclick="() => CardClicked(index)">
+                    }
+                    <DropTarget T="String" Drop="@OnDrop" DropTargetNumber="@index">
+                            <div class="drop-target">
+                                @if (Chevrons[index] == "left")
+                                {
+                                    <img src="../img/left-chevron.png" alt="card" width="50px">
+                                }
+                                else if (Chevrons[index] == "right")
+                                {
+                                    <img src="../img/right-chevron.png" alt="card" width="50px">
+                                }
+                                else
+                                {
+                                    <img src="../img/blank-chevron.png" alt="card" width="50px">
+                                }
+                            </div>
+                        </DropTarget>
+                </div>
+                count++;
+            }
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <Draggable Data="@draggableDataA">
+                    <div class="draggable">
+                        <img src="../img/left-chevron.png" alt="card" width="50px">
+                    </div>
+                </Draggable>
+            </div>
+            <div class="col-2">
+                <Draggable Data="@draggableDataB">
+                    <div class="draggable">
+                        <img src="../img/right-chevron.png" alt="card" width="50px">
+                    </div>
+                </Draggable>
+            </div>
+            <div class="col-8 d-flex align-items-center justify-content-center">
+                <button class="btn btn-md btn-primary" disabled="@ButtonDisabled" @onclick="Unwinnable">Unwinnable!</button>
+            </div>
+        </div>
+    }
+    else if (UserWon)
+    {
+        Wins++;
+        <h1 class="display-1">You Won!</h1>
+        <button class="btn btn-md btn-primary" @onclick="NextGame">Next Game!</button>
+    }
+    else if (!CanStillPlay && !UserWon)
+    {
+        ButtonDisabled = true;
+        <h1 class="display-1">You Lost!</h1>
+        <button class="btn btn-md btn-primary" @onclick="NextGame">Next Game!</button>
+    }
+    @if (NumberOfRounds == 5)
+    {
+        <h1 class="display-1">Second Round Complete!</h1>
+        <p>Please click summary to see your score and additional information!</p>
+        <button class="btn btn-md btn-primary" @onclick="() => SecondRoundComplete.InvokeAsync(Tuple.Create(Wins, CorrectUnwinnables))">Summary!</button>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<Tuple<int, int>> SecondRoundComplete { get; set; }
+    public int CorrectUnwinnables { get; set; } = 0;
+    public int Wins { get; set; } = 0;
+    public Deck TheDeck { get; set; }
+    public bool UserWon { get; set; } = false;
+    public int NumberOfRounds { get; set; } = 0;
+    public bool CanStillPlay { get; set; } = true;
+    public bool GameWinnable{ get; set; }
+    public string[] Chevrons { get; set; } = new string[7];
+    string draggableDataA = "left";
+    string draggableDataB = "right";
+    public string UnwinnableString { get; set; } = "";
+    public string[] Cards = new string[] {
+        "../img/bear_card.png", "../img/cat_card.png", "../img/flamingo_card.png", "../img/iguana_card.png",
+        "../img/jellyfish_card.png", "../img/kangoroo_card.png", "../img/lion_card.png", "../img/owl_card.png"
+    };
+    public int[] CardFaces = new int[7];
+    Random random = new Random(DateTime.Now.Millisecond);
+    public bool ButtonDisabled { get; set; } = false;
+
+
+    protected override void OnInitialized()
+    {
+        TheDeck = new Deck(2, NumberOfRounds);
+        CanStillPlay = true;
+        GameWinnable = TheDeck.WinPossible(1);
+
+        for (int i = 0; i < 7; i++)
+            CardFaces[i] = random.Next(Cards.Length);
+
+        base.OnInitialized();
+    }
+
+    public void CardClicked(int card)
+    {
+        TheDeck.ChangeCard(card);
+        UserWon = TheDeck.CheckWin();
+        CanStillPlay = TheDeck.WinPossible(0);
+    }
+
+    public void NextGame()
+    {
+        NumberOfRounds++;
+        TheDeck = new Deck(2, NumberOfRounds);
+        for (int i = 0; i < 7; i++)
+            CardFaces[i] = random.Next(Cards.Length);
+        GameWinnable = TheDeck.WinPossible(1);
+        UserWon = false;
+        CanStillPlay = true;
+        ButtonDisabled = false;
+        UnwinnableString = "";
+    }
+
+    public void OnDrop(Tuple<int, string> data)
+    {
+        Chevrons[data.Item1] = data.Item2;
+    }
+
+    public void Unwinnable()
+    {
+        if (!GameWinnable)
+        {
+            UnwinnableString = "You are right! The game is unwinnable";
+            UserWon = true;
+            CorrectUnwinnables++;
+        }
+        else
+        {
+            UnwinnableString = "You are wrong! You can win this game!";
+        }
+    }
+
+    public void Complete()
+    {
+    }
+}
