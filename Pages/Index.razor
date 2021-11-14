@@ -1,23 +1,25 @@
 @page "/"
 
-<div class="container border border-3 border-dark rounded p-5 shadow" style="height: 600px;" hidden="@MainMenuHidden">
+<div hidden="@MainMenuHidden">
     <MainMenu StoryChosen="StoryChosen" InfiniteChosen="InfiniteChosen" AboutChosen="AboutChosen" />
 </div>
-<div class="container border border-3 border-dark rounded p-5 shadow" hidden="@TutorialHidden">
+<div hidden="@TutorialHidden">
     <Tutorial TutorialContinue="TutorialContinue" />
 </div>
-<div class="container border border-3 border-dark rounded p-5 shadow" style="height: 600px;" hidden="@FirstRoundHidden">
+<div hidden="@FirstRoundHidden">
     <FirstRound FirstRoundComplete="FirstRoundComplete" />
 </div>
-<div class="container border border-3 border-dark rounded p-5 shadow" hidden="@ExplanationHidden">
+<div hidden="@ExplanationHidden">
     <Explanation ExplanationContinue="ExplanationContinue" />
 </div>
-<div class="container border border-3 border-dark rounded p-5 shadow" style="height: 600px;" hidden="@SecondRoundHidden">
+<div hidden="@SecondRoundHidden">
     <SecondRound SecondRoundComplete="SecondRoundComplete" />
 </div>
-<div class="container border border-3 border-dark rounded p-5 shadow" hidden="@SummaryHidden">
+<div hidden="@SummaryHidden">
     <Summary SummaryContinue="SummaryContinue" Wins="Wins" CorrectUnwinnables="CorrectUnwinnables" />
 </div>
+
+ @* class="container border border-3 border-dark rounded p-5 shadow" *@
 
 @code {
     public bool MainMenuHidden { get; set; } = false;
