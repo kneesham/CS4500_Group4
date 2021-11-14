@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 83 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
+#line 81 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
        
     [Parameter]
     public EventCallback<Tuple<int, int>> SecondRoundComplete { get; set; }
@@ -160,6 +160,7 @@ using ZooBreakout.Data;
         TheDeck = new Deck(2, NumberOfRounds);
         for (int i = 0; i < 7; i++)
             CardFaces[i] = random.Next(Cards.Length);
+        Chevrons = new string[7];
         GameWinnable = TheDeck.WinPossible(1);
         UserWon = false;
         CanStillPlay = true;
@@ -184,10 +185,6 @@ using ZooBreakout.Data;
         {
             UnwinnableString = "You are wrong! You can win this game!";
         }
-    }
-
-    public void Complete()
-    {
     }
 
 #line default

@@ -1,84 +1,82 @@
-<div class="container">
-    @UnwinnableString
-    @if (!UserWon && NumberOfRounds != 5 && CanStillPlay)
-    {
-        int count = 0;
-        <div class="row">
-            @foreach(var card in TheDeck.Cards)
-            {
-                int index = count;
-                <div class="col justify-content-center">
-                    @if (card == 0)
-                    {
-                        <img src=@Cards[CardFaces[index]] alt="card" width="100px" @onclick="() => CardClicked(index)">
-                    }
-                    else if (card == 1)
-                    {
-                        <img src="../img/back_card.png" alt="card" width="100px" @onclick="() => CardClicked(index)">
-                    }
-                    else
-                    {
-                        <img src="../img/blank_card.png" alt="card" width="100px" @onclick="() => CardClicked(index)">
-                    }
-                    <DropTarget T="String" Drop="@OnDrop" DropTargetNumber="@index">
-                            <div class="drop-target">
-                                @if (Chevrons[index] == "left")
-                                {
-                                    <img src="../img/left-chevron.png" alt="card" width="50px">
-                                }
-                                else if (Chevrons[index] == "right")
-                                {
-                                    <img src="../img/right-chevron.png" alt="card" width="50px">
-                                }
-                                else
-                                {
-                                    <img src="../img/blank-chevron.png" alt="card" width="50px">
-                                }
-                            </div>
-                        </DropTarget>
+@UnwinnableString
+@if (!UserWon && NumberOfRounds != 5 && CanStillPlay)
+{
+    int count = 0;
+    <div class="row">
+        @foreach(var card in TheDeck.Cards)
+        {
+            int index = count;
+            <div class="col justify-content-center">
+                @if (card == 0)
+                {
+                    <img src=@Cards[CardFaces[index]] alt="card" width="100%" @onclick="() => CardClicked(index)">
+                }
+                else if (card == 1)
+                {
+                    <img src="../img/back_card.png" alt="card" width="100%" @onclick="() => CardClicked(index)">
+                }
+                else
+                {
+                    <img src="../img/blank_card.png" alt="card" width="100%" @onclick="() => CardClicked(index)">
+                }
+                <DropTarget T="String" Drop="@OnDrop" DropTargetNumber="@index">
+                        <div class="drop-target">
+                            @if (Chevrons[index] == "left")
+                            {
+                                <img src="../img/left-chevron.png" alt="card" width="50px">
+                            }
+                            else if (Chevrons[index] == "right")
+                            {
+                                <img src="../img/right-chevron.png" alt="card" width="50px">
+                            }
+                            else
+                            {
+                                <img src="../img/blank-chevron.png" alt="card" width="50px">
+                            }
+                        </div>
+                    </DropTarget>
+            </div>
+            count++;
+        }
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <Draggable Data="@draggableDataA">
+                <div class="draggable">
+                    <img src="../img/left-chevron.png" alt="card" width="50px">
                 </div>
-                count++;
-            }
+            </Draggable>
         </div>
-        <div class="row">
-            <div class="col-2">
-                <Draggable Data="@draggableDataA">
-                    <div class="draggable">
-                        <img src="../img/left-chevron.png" alt="card" width="50px">
-                    </div>
-                </Draggable>
-            </div>
-            <div class="col-2">
-                <Draggable Data="@draggableDataB">
-                    <div class="draggable">
-                        <img src="../img/right-chevron.png" alt="card" width="50px">
-                    </div>
-                </Draggable>
-            </div>
-            <div class="col-8 d-flex align-items-center justify-content-center">
-                <button class="btn btn-md btn-primary" disabled="@ButtonDisabled" @onclick="Unwinnable">Unwinnable!</button>
-            </div>
+        <div class="col-2">
+            <Draggable Data="@draggableDataB">
+                <div class="draggable">
+                    <img src="../img/right-chevron.png" alt="card" width="50px">
+                </div>
+            </Draggable>
         </div>
-    }
-    else if (UserWon)
-    {
-        Wins++;
-        <h1 class="display-1">You Won!</h1>
-        <button class="btn btn-md btn-primary" @onclick="NextGame">Next Game!</button>
-    }
-    else if (!CanStillPlay && !UserWon)
-    {
-        ButtonDisabled = true;
-        <h1 class="display-1">You Lost!</h1>
-        <button class="btn btn-md btn-primary" @onclick="NextGame">Next Game!</button>
-    }
-    @if (NumberOfRounds == 5)
-    {
-        <h1 class="display-1">Second Round Complete!</h1>
-        <p>Please click summary to see your score and additional information!</p>
-        <button class="btn btn-md btn-primary" @onclick="() => SecondRoundComplete.InvokeAsync(Tuple.Create(Wins, CorrectUnwinnables))">Summary!</button>
-    }
-</div>
+        <div class="col-8 d-flex align-items-center justify-content-center">
+            <button class="btn btn-md btn-primary" disabled="@ButtonDisabled" @onclick="Unwinnable">Unwinnable!</button>
+        </div>
+    </div>
+}
+else if (UserWon)
+{
+    Wins++;
+    <h1 class="display-1">You Won!</h1>
+    <button class="btn btn-md btn-primary" @onclick="NextGame">Next Game!</button>
+}
+else if (!CanStillPlay && !UserWon)
+{
+    ButtonDisabled = true;
+    <h1 class="display-1">You Lost!</h1>
+    <button class="btn btn-md btn-primary" @onclick="NextGame">Next Game!</button>
+}
+@if (NumberOfRounds == 5)
+{
+    <h1 class="display-1">Second Round Complete!</h1>
+    <p>Please click summary to see your score and additional information!</p>
+    <button class="btn btn-md btn-primary" @onclick="() => SecondRoundComplete.InvokeAsync(Tuple.Create(Wins, CorrectUnwinnables))">Summary!</button>
+}
 
 @code {
     [Parameter]
@@ -128,6 +126,7 @@
         TheDeck = new Deck(2, NumberOfRounds);
         for (int i = 0; i < 7; i++)
             CardFaces[i] = random.Next(Cards.Length);
+        Chevrons = new string[7];
         GameWinnable = TheDeck.WinPossible(1);
         UserWon = false;
         CanStillPlay = true;
@@ -152,9 +151,5 @@
         {
             UnwinnableString = "You are wrong! You can win this game!";
         }
-    }
-
-    public void Complete()
-    {
     }
 }

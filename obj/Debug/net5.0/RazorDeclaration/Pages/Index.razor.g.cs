@@ -112,7 +112,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 22 "/Users/anthony/Documents/GitHub/CS4500_Group4/Pages/Index.razor"
+#line 24 "/Users/anthony/Documents/GitHub/CS4500_Group4/Pages/Index.razor"
        
     public bool MainMenuHidden { get; set; } = false;
     public bool TutorialHidden { get; set; } = true;
