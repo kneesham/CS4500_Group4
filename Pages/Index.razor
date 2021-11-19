@@ -19,7 +19,9 @@
     <Summary SummaryContinue="SummaryContinue" Wins="Wins" CorrectUnwinnables="CorrectUnwinnables" />
 </div>
 
- @* class="container border border-3 border-dark rounded p-5 shadow" *@
+<div hidden="@InfiniteHidden">
+    <Infinite InfiniteComplete="InfiniteComplete" />
+</div>
 
 @code {
     public bool MainMenuHidden { get; set; } = false;
@@ -43,6 +45,8 @@
     public void InfiniteChosen(bool infinite) 
     {
         Console.WriteLine($"infinite: {infinite}");
+        MainMenuHidden = true;
+        InfiniteHidden = false;
     }
 
     public void AboutChosen(bool about) 
@@ -74,11 +78,20 @@
 
     public void SecondRoundComplete(Tuple<int, int> tuple)
     {
-        Console.WriteLine($"complete: {tuple.Item1} {tuple.Item2}");
-        SecondRoundHidden = true;
-        SummaryHidden = false;
+        Console.WriteLine($"second complete: {tuple.Item1} {tuple.Item2}");
         Wins += tuple.Item1;
         CorrectUnwinnables += tuple.Item2;
+        SecondRoundHidden = true;
+        SummaryHidden = false;
+    }
+
+    public void InfiniteComplete(Tuple<int, int> tuple)
+    {
+        Console.Write($"infinite complete: {tuple.Item1} {tuple.Item2}");
+        Wins += tuple.Item1;
+        CorrectUnwinnables += tuple.Item2;
+        InfiniteHidden = true;
+        SummaryHidden = false;
     }
 
     public void SummaryContinue(bool continued)

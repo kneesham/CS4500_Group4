@@ -22,7 +22,7 @@ button:focus {
 }
 
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 0;
   margin: 0;
   background: #111517;

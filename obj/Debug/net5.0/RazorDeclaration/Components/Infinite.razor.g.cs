@@ -110,6 +110,116 @@ using ZooBreakout.Data;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 128 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
+       
+    [Parameter]
+    public EventCallback<Tuple<int, int>> InfiniteComplete { get; set; }
+    public int CorrectUnwinnables { get; set; } = 0;
+    public int Wins { get; set; } = 0;
+    public Deck TheDeck { get; set; }
+    public bool UserWon { get; set; } = false;
+    public int NumberOfRounds { get; set; } = 0;
+    public bool CanStillPlay { get; set; } = true;
+    public bool GameWinnable{ get; set; }
+    public string[] Chevrons { get; set; } = new string[7];
+    string draggableDataA = "left";
+    string draggableDataB = "right";
+    public string UnwinnableString { get; set; } = "";
+    public string[] Cards = new string[] {
+        "../img/cards/bear_card.png", "../img/cards/cat_card.png", "../img/cards/flamingo_card.png", 
+        "../img/cards/iguana_card.png", "../img/cards/jellyfish_card.png", "../img/cards/kangoroo_card.png", 
+        "../img/cards/lion_card.png", "../img/cards/owl_card.png"
+    };
+    public int[] CardFaces = new int[7];
+    Random random = new Random(DateTime.Now.Millisecond);
+    public bool ButtonDisabled { get; set; } = false;
+    public string backgroundimg { get; set; } = "";
+    public int NumberofCards { get; set; } = 10;
+    public bool NeedsToPick { get; set; } = true;
+    public bool MessageHidden { get; set; } = true;
+
+
+    protected override void OnInitialized()
+    {
+        Chevrons = new string[NumberofCards];
+        CardFaces = new int[NumberofCards];
+
+        // setup game
+        TheDeck = new Deck(NumberofCards);
+        CanStillPlay = true;
+        GameWinnable = TheDeck.WinPossible(1);
+
+        // pick random card faces
+        for (int i = 0; i < NumberofCards; i++)
+            CardFaces[i] = random.Next(Cards.Length);
+
+        // pick random background
+        int imagenum = random.Next(0, 3);
+        if (imagenum == 0)
+            backgroundimg = "image1";
+        else if (imagenum == 1)
+            backgroundimg = "image2";
+        else
+            backgroundimg = "image3";
+
+        base.OnInitialized();
+    }
+
+    public void CardClicked(int card)
+    {
+        TheDeck.ChangeCard(card);
+        UserWon = TheDeck.CheckWin();
+        CanStillPlay = TheDeck.WinPossible(0);
+    }
+
+    public void NextGame()
+    {
+        // validate user input
+        if (NumberofCards < 1 || NumberofCards > 15)
+        {
+            MessageHidden = false;
+            return;
+        }
+        
+        MessageHidden = true;
+        Chevrons = new string[NumberofCards];
+        CardFaces = new int[NumberofCards];
+        NeedsToPick = false;
+        NumberOfRounds++;
+        TheDeck = new Deck(NumberofCards);
+        for (int i = 0; i < NumberofCards; i++)
+            CardFaces[i] = random.Next(Cards.Length);
+        Chevrons = new string[NumberofCards];
+        GameWinnable = TheDeck.WinPossible(1);
+        UserWon = false;
+        CanStillPlay = true;
+        ButtonDisabled = false;
+        UnwinnableString = "";
+    }
+
+    public void OnDrop(Tuple<int, string> data)
+    {
+        Chevrons[data.Item1] = data.Item2;
+    }
+
+    public void Unwinnable()
+    {
+        if (!GameWinnable)
+        {
+            UnwinnableString = "You are right! The game is unwinnable";
+            UserWon = true;
+            CorrectUnwinnables++;
+        }
+        else
+        {
+            UnwinnableString = "You are wrong! You can win this game!";
+        }
+    }
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/FirstRound.razor"
+#line 77 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/FirstRound.razor"
        
     [Parameter]
     public EventCallback<int> FirstRoundComplete { get; set; }
@@ -121,20 +121,33 @@ using ZooBreakout.Data;
     public int Wins { get; set; } = 0;
     public bool GamePossibleToWin { get; set; } = true;
     public string[] Cards = new string[] {
-        "../img/bear_card.png", "../img/cat_card.png", "../img/flamingo_card.png", "../img/iguana_card.png",
-        "../img/jellyfish_card.png", "../img/kangoroo_card.png", "../img/lion_card.png", "../img/owl_card.png"
+        "../img/cards/bear_card.png", "../img/cards/cat_card.png", "../img/cards/flamingo_card.png", 
+        "../img/cards/iguana_card.png", "../img/cards/jellyfish_card.png", "../img/cards/kangoroo_card.png", 
+        "../img/cards/lion_card.png", "../img/cards/owl_card.png"
     };
     public int[] CardFaces = new int[5];
     Random random = new Random(DateTime.Now.Millisecond);
+    public string backgroundimg { get; set; } = "";
 
     protected override void OnInitialized()
     {
+        // create new game
         TheDeck = new Deck(1, NumberOfRounds);
         GamePossibleToWin = true;
 
+        // pick random card faces
         for (int i = 0; i < 5; i++)
             CardFaces[i] = random.Next(Cards.Length);
-
+        
+        // pick random background
+        int imagenum = random.Next(0, 3);
+        if (imagenum == 0)
+            backgroundimg = "image1";
+        else if (imagenum == 1)
+            backgroundimg = "image2";
+        else
+            backgroundimg = "image3";
+        
         base.OnInitialized();
     }
 

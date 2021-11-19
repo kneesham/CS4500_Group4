@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 32 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Tutorial.razor"
+#line 50 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Tutorial.razor"
        
     [Parameter]
     public EventCallback<bool> TutorialContinue { get; set; }

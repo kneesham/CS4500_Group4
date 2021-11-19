@@ -1,16 +1,3 @@
-@* <div class="container">
-    <div class="row">
-        <div class="col">
-            <img src="../img/animals-main-menu.jpeg">
-        </div>
-        <div class="col">
-            <h1 class="display-1">Zoo Breakout!</h1>
-            <button class="btn btn-md btn-primary" @onclick="@(() => StoryChosen.InvokeAsync(true))">Story Mode</button>
-            <button class="btn btn-md btn-secondary" @onclick="@(() => InfiniteChosen.InvokeAsync(true))">Infinite Mode</button>
-            <button class="btn btn-md btn-secondary" @onclick="@(() => AboutChosen.InvokeAsync(true))">About Us</button>
-        </div>
-    </div>
-</div> *@
 <div id="main-wrapper" class="split-container abs-fs">
 		<div class="container-fluid">
 			<div class="row">
@@ -24,10 +11,10 @@
 						<div class="st-desc">
 							<h2 class="fw600">CS 4500, Fall 2021</h2>
 							<p>
-							<b>GROUP NAME:</b> The Flying Purple Monkeys<br/>
-							<b>GROUP MEMBERS:</b> Tony Urschler, Tyler Ziggas, Andrew Ziggas, Theodore Nesham, Ahmed Aljorani<br/>
-							<b>TEAM LEADER:</b> Tony Urschler<br/>
-						  </p>
+                                <b>GROUP NAME:</b> The Flying Purple Monkeys<br/>
+                                <b>GROUP MEMBERS:</b> Tony Urschler, Tyler Ziggas, Andrew Ziggas, Theodore Nesham, Ahmed Aljorani<br/>
+                                <b>TEAM LEADER:</b> Tony Urschler<br/>
+						    </p>
 							<p>
 								<a class="st-btn btn-fill" data-toggle="modal" data-target="#" @onclick="@(() => StoryChosen.InvokeAsync(true))">Story Mode</a>
 								<a class="st-btn btn-fill" data-toggle="modal" data-target="#" @onclick="@(() => InfiniteChosen.InvokeAsync(true))">Infinite Mode</a>

@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 81 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
+#line 118 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
        
     [Parameter]
     public EventCallback<Tuple<int, int>> SecondRoundComplete { get; set; }
@@ -127,22 +127,35 @@ using ZooBreakout.Data;
     string draggableDataB = "right";
     public string UnwinnableString { get; set; } = "";
     public string[] Cards = new string[] {
-        "../img/bear_card.png", "../img/cat_card.png", "../img/flamingo_card.png", "../img/iguana_card.png",
-        "../img/jellyfish_card.png", "../img/kangoroo_card.png", "../img/lion_card.png", "../img/owl_card.png"
+        "../img/cards/bear_card.png", "../img/cards/cat_card.png", "../img/cards/flamingo_card.png", 
+        "../img/cards/iguana_card.png", "../img/cards/jellyfish_card.png", "../img/cards/kangoroo_card.png", 
+        "../img/cards/lion_card.png", "../img/cards/owl_card.png"
     };
     public int[] CardFaces = new int[7];
     Random random = new Random(DateTime.Now.Millisecond);
     public bool ButtonDisabled { get; set; } = false;
+    public string backgroundimg { get; set; } = "";
 
 
     protected override void OnInitialized()
     {
+        // setup game
         TheDeck = new Deck(2, NumberOfRounds);
         CanStillPlay = true;
         GameWinnable = TheDeck.WinPossible(1);
 
+        // pick random card faces
         for (int i = 0; i < 7; i++)
             CardFaces[i] = random.Next(Cards.Length);
+
+        // pick random background
+        int imagenum = random.Next(0, 3);
+        if (imagenum == 0)
+            backgroundimg = "image1";
+        else if (imagenum == 1)
+            backgroundimg = "image2";
+        else
+            backgroundimg = "image3";
 
         base.OnInitialized();
     }

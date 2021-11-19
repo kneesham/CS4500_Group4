@@ -112,7 +112,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 24 "/Users/anthony/Documents/GitHub/CS4500_Group4/Pages/Index.razor"
+#line 26 "/Users/anthony/Documents/GitHub/CS4500_Group4/Pages/Index.razor"
        
     public bool MainMenuHidden { get; set; } = false;
     public bool TutorialHidden { get; set; } = true;
@@ -135,6 +135,8 @@ using ZooBreakout.Data;
     public void InfiniteChosen(bool infinite) 
     {
         Console.WriteLine($"infinite: {infinite}");
+        MainMenuHidden = true;
+        InfiniteHidden = false;
     }
 
     public void AboutChosen(bool about) 
@@ -166,11 +168,20 @@ using ZooBreakout.Data;
 
     public void SecondRoundComplete(Tuple<int, int> tuple)
     {
-        Console.WriteLine($"complete: {tuple.Item1} {tuple.Item2}");
-        SecondRoundHidden = true;
-        SummaryHidden = false;
+        Console.WriteLine($"second complete: {tuple.Item1} {tuple.Item2}");
         Wins += tuple.Item1;
         CorrectUnwinnables += tuple.Item2;
+        SecondRoundHidden = true;
+        SummaryHidden = false;
+    }
+
+    public void InfiniteComplete(Tuple<int, int> tuple)
+    {
+        Console.Write($"infinite complete: {tuple.Item1} {tuple.Item2}");
+        Wins += tuple.Item1;
+        CorrectUnwinnables += tuple.Item2;
+        InfiniteHidden = true;
+        SummaryHidden = false;
     }
 
     public void SummaryContinue(bool continued)

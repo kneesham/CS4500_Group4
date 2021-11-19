@@ -1,43 +1,76 @@
-<div class="container">
-    @if (!UserWon && GamePossibleToWin)
-    {
-        int count = 0;
-        @foreach(var card in TheDeck.Cards)
-        {
-            int index = count;
-            if (card == 0)
+<div class="@backgroundimg">
+    <header>
+		<div class="deck-logo"> <!-- ## Start Logo part ## -->
+			<img src="../img/deck-logo.png" alt="ZooBreakout!"/>
+		</div> <!-- ## End Logo part ## -->
+	</header>
+	
+	<div class="flex-container">
+		<div class="flex-row">
+			<span class="flex-item"> Elapsed time: <b id="elapsed-time">00:00</b></span>
+		</div>
+		<div class="flex-row">
+			<span class="flex-item"> Player name: <b id="player-name">Demo</b></span>
+		</div>
+		<div class="flex-row">
+			<span class="flex-item"> Round number: <b id="Round-number">00</b></span>
+		</div>
+	</div>
+
+	<section id="game">
+		<div id="cards">
+		    @if (!UserWon && GamePossibleToWin)
             {
-                <img src=@Cards[CardFaces[index]] alt="card" width="200px" @onclick="() => CardClicked(index)">
+                int count = 0;
+                @foreach(var card in TheDeck.Cards)
+                {
+                    int index = count;
+                    if (card == 0)
+                    {
+                        <img src=@Cards[CardFaces[index]] alt="card" width="150px" style="margin:2px;" @onclick="() => CardClicked(index)">
+                    }
+                    else if (card == 1)
+                    {
+                        <img src="../img/cards/back_card.png" alt="card" width="150px" style="margin:2px;" @onclick="() => CardClicked(index)">
+                    }
+                    else
+                    {
+                        <img src="../img/cards/blank_card.png" alt="card" width="150px" style="margin:2px; opacity:0;" @onclick="() => CardClicked(index)">
+                    }
+                    count++;
+                }
             }
-            else if (card == 1)
-            {
-                <img src="../img/back_card.png" alt="card" width="200px" @onclick="() => CardClicked(index)">
-            }
-            else
-            {
-                <img src="../img/blank_card.png" alt="card" width="200px" @onclick="() => CardClicked(index)">
-            }
-            count++;
-        }
-    }
-    else if (UserWon && NumberOfRounds != 5)
+		</div> <!-- #cards -->
+	</section> <!-- #game -->
+
+    @if (UserWon || !GamePossibleToWin)
     {
-        Wins++;
-        <h1 class="display-1">You Won!</h1>
-        <button class="btn btn-md btn-primary" @onclick="NextGame">Next Game!</button>
-    }
-    else if (!GamePossibleToWin && !UserWon && NumberOfRounds == 4)
-    {
-        <h1 class="display-1"> You Lost!</h1>
-        <p>But, why? This last game was actually unwinnable. Even if you played it perfectly, you would not have
-            been able to win. Click next to find out why!
-        </p>
-        <button class="btn btn-md btn-primary" @onclick="() => FirstRoundComplete.InvokeAsync(Wins)">Next</button>
-    }
-    else if (!GamePossibleToWin && !UserWon)
-    {
-        <h1 class="display-1">You Lost!</h1>
-        <button class="btn btn-md btn-primary" @onclick="NextGame">Next Game!</button>
+        <section id="popup">
+            <div id="popup-bg"></div>
+            <div id="popup-box">
+                <div id="popup-box-content">
+                    @if (UserWon && NumberOfRounds != 5)
+                    {
+                        Wins++;
+                        <h1 class="display-1">You Won!</h1>
+                        <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="NextGame">Next Game!</a>
+                    }
+                    else if (!GamePossibleToWin && !UserWon && NumberOfRounds == 4)
+                    {
+                        <h1 class="display-1"> You Lost!</h1>
+                        <p style="font-size: 15px;">But, why? This last game was actually unwinnable. Even if you played it perfectly, you would not have
+                            been able to win. Click next to find out why!
+                        </p>
+                        <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="() => FirstRoundComplete.InvokeAsync(Wins)">Next</a>
+                    }
+                    else if (!GamePossibleToWin && !UserWon)
+                    {
+                        <h1 class="display-1">You Lost!</h1>
+                        <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="NextGame">Next Game!</a>
+                    }
+                </div>
+            </div>
+        </section>
     }
 </div>
 
@@ -50,20 +83,33 @@
     public int Wins { get; set; } = 0;
     public bool GamePossibleToWin { get; set; } = true;
     public string[] Cards = new string[] {
-        "../img/bear_card.png", "../img/cat_card.png", "../img/flamingo_card.png", "../img/iguana_card.png",
-        "../img/jellyfish_card.png", "../img/kangoroo_card.png", "../img/lion_card.png", "../img/owl_card.png"
+        "../img/cards/bear_card.png", "../img/cards/cat_card.png", "../img/cards/flamingo_card.png", 
+        "../img/cards/iguana_card.png", "../img/cards/jellyfish_card.png", "../img/cards/kangoroo_card.png", 
+        "../img/cards/lion_card.png", "../img/cards/owl_card.png"
     };
     public int[] CardFaces = new int[5];
     Random random = new Random(DateTime.Now.Millisecond);
+    public string backgroundimg { get; set; } = "";
 
     protected override void OnInitialized()
     {
+        // create new game
         TheDeck = new Deck(1, NumberOfRounds);
         GamePossibleToWin = true;
 
+        // pick random card faces
         for (int i = 0; i < 5; i++)
             CardFaces[i] = random.Next(Cards.Length);
-
+        
+        // pick random background
+        int imagenum = random.Next(0, 3);
+        if (imagenum == 0)
+            backgroundimg = "image1";
+        else if (imagenum == 1)
+            backgroundimg = "image2";
+        else
+            backgroundimg = "image3";
+        
         base.OnInitialized();
     }
 
