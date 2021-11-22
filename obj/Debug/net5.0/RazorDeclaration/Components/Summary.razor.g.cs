@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 35 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Summary.razor"
+#line 37 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Summary.razor"
        
     [Parameter]
     public EventCallback<bool> SummaryContinue { get; set; }
@@ -119,10 +119,15 @@ using ZooBreakout.Data;
     public int Wins { get; set; }
     [Parameter]
     public int CorrectUnwinnables { get; set; }
+    [Parameter]
+    public int TotalGames { get; set; }
+    [Parameter]
+    public int TotalUnWins { get; set; }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

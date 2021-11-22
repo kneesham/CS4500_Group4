@@ -11,6 +11,13 @@ body {
   color: #fff;
 }
 
+.main-menu-input {
+  background-color: #ff8c00;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
 #intro-content::before {
   background-image: url('../img/bg.png');
 }

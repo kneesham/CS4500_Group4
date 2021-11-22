@@ -111,14 +111,23 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 34 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/MainMenu.razor"
+#line 65 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/MainMenu.razor"
        
     [Parameter]
-    public EventCallback<bool> StoryChosen { get; set; }
+    public EventCallback<string> StoryChosen { get; set; }
     [Parameter]
-    public EventCallback<bool> InfiniteChosen { get; set; }
+    public EventCallback<string> InfiniteChosen { get; set; }
     [Parameter]
     public EventCallback<bool> AboutChosen { get; set; }
+	public bool PopupHidden { get; set; } = true;
+	public string Name { get; set; } = "";
+	public int Decision { get; set; }
+
+	public void ShowPopup(int option)
+	{
+		Decision = option;
+		PopupHidden = false;
+	}
 
 #line default
 #line hidden

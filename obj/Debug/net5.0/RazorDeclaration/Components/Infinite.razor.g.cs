@@ -114,7 +114,9 @@ using ZooBreakout.Data;
 #line 128 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
        
     [Parameter]
-    public EventCallback<Tuple<int, int>> InfiniteComplete { get; set; }
+    public EventCallback<Tuple<int, int, int, int>> InfiniteComplete { get; set; }
+    [Parameter]
+    public string Name { get; set; } = "";
     public int CorrectUnwinnables { get; set; } = 0;
     public int Wins { get; set; } = 0;
     public Deck TheDeck { get; set; }
@@ -138,6 +140,8 @@ using ZooBreakout.Data;
     public int NumberofCards { get; set; } = 10;
     public bool NeedsToPick { get; set; } = true;
     public bool MessageHidden { get; set; } = true;
+    public int TotalGames { get; set; } = 0;
+    public int TotalUnwinnables { get; set; } = 0;
 
 
     protected override void OnInitialized()
@@ -149,7 +153,9 @@ using ZooBreakout.Data;
         TheDeck = new Deck(NumberofCards);
         CanStillPlay = true;
         GameWinnable = TheDeck.WinPossible(1);
-
+        if (!GameWinnable)
+            TotalUnwinnables++;
+        TotalGames++;
         // pick random card faces
         for (int i = 0; i < NumberofCards; i++)
             CardFaces[i] = random.Next(Cards.Length);
@@ -181,7 +187,7 @@ using ZooBreakout.Data;
             MessageHidden = false;
             return;
         }
-        
+        TotalGames++;
         MessageHidden = true;
         Chevrons = new string[NumberofCards];
         CardFaces = new int[NumberofCards];
@@ -192,6 +198,8 @@ using ZooBreakout.Data;
             CardFaces[i] = random.Next(Cards.Length);
         Chevrons = new string[NumberofCards];
         GameWinnable = TheDeck.WinPossible(1);
+        if (!GameWinnable)
+            TotalUnwinnables++;
         UserWon = false;
         CanStillPlay = true;
         ButtonDisabled = false;

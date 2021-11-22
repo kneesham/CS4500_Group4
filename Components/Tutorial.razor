@@ -1,12 +1,22 @@
 <div class="p-5">
 <div class="row">
     <div class="col-6">
-        <p>
-            Oh no! The animals have escaped from the local zoo! We need your help to find them. <br>
-            These are the rules.<br>
-            Explanation of diagram.<br>
-        </p>
-        <a class="st-btn btn-fill" data-toggle="modal" data-target="#" @onclick="@(() => TutorialContinue.InvokeAsync(true))">Continue</a>
+        <div class="tutorial-text">
+            <p>
+                <h1 class="display-3">Oh no!<br></h1><h2>The animals have escaped from the local zoo! We need your help to find them.</h2><br>
+                To catch all the animals, you'll need to draw one card at a time. Each time you pick an animal,
+                if another animal is close by it will either hide or come out to see what happened. Once all the
+                animals are off the board you win! But be careful in which animals you take. A wrong move could
+                lead to an animal never coming out again!<br>
+                <br><strong style="font-size: 2em;">Check out the diagram to the right!</strong><br>
+                <strong style="font-size: 1.5em;">1. </strong>We start off with three animals. Two are hidden, but the bear is out! Let's take the one in the middle
+                and see what happens.<br>
+                <strong style="font-size: 1.5em;">2. </strong>After catching the bear, the cat and kangaroo came out of their hiding spots to see what all the camotion
+                was about. Let's catch them both!<br>
+                <strong style="font-size: 1.5em;">3. </strong>Now that all of the cards are gone, we've won! Awesome job!
+            </p>
+            <a class="st-btn btn-fill" data-toggle="modal" data-target="#" @onclick="@(() => TutorialContinue.InvokeAsync(true))">Continue</a>
+        </div>
     </div>
     <div class="col-6 diagram">
         <div class="row align-items-center justify-content-center">

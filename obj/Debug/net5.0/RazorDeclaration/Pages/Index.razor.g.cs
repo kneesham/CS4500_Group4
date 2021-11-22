@@ -122,19 +122,22 @@ using ZooBreakout.Data;
     public bool SummaryHidden { get; set; } = true;
     public bool InfiniteHidden { get; set; } = true;
     public int Wins { get; set; } = 0;
+    public int TotalGames { get; set; } = 0;
     public int CorrectUnwinnables { get; set; } = 0;
+    public int TotalUnWins { get; set; } = 0;
+    public string Name { get; set; } = "";
 
 
-    public void StoryChosen(bool story) 
+    public void StoryChosen(string name) 
     {
-        Console.WriteLine($"story: {story}");
+        Name = name;
         MainMenuHidden = true;
         TutorialHidden = false;
     }
 
-    public void InfiniteChosen(bool infinite) 
+    public void InfiniteChosen(string name) 
     {
-        Console.WriteLine($"infinite: {infinite}");
+        Name = name;
         MainMenuHidden = true;
         InfiniteHidden = false;
     }
@@ -157,6 +160,7 @@ using ZooBreakout.Data;
         FirstRoundHidden = true;
         ExplanationHidden = false;
         Wins += wins;
+        TotalGames += 4;
     }
 
     public void ExplanationContinue(bool continued)
@@ -166,20 +170,24 @@ using ZooBreakout.Data;
         SecondRoundHidden = false;
     }
 
-    public void SecondRoundComplete(Tuple<int, int> tuple)
+    public void SecondRoundComplete(Tuple<int, int, int> tuple)
     {
         Console.WriteLine($"second complete: {tuple.Item1} {tuple.Item2}");
         Wins += tuple.Item1;
         CorrectUnwinnables += tuple.Item2;
+        TotalGames += 7;
+        TotalUnWins += tuple.Item3;
         SecondRoundHidden = true;
         SummaryHidden = false;
     }
 
-    public void InfiniteComplete(Tuple<int, int> tuple)
+    public void InfiniteComplete(Tuple<int, int, int, int> tuple)
     {
         Console.Write($"infinite complete: {tuple.Item1} {tuple.Item2}");
         Wins += tuple.Item1;
         CorrectUnwinnables += tuple.Item2;
+        TotalGames += tuple.Item3;
+        TotalUnWins += tuple.Item4;
         InfiniteHidden = true;
         SummaryHidden = false;
     }

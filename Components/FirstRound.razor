@@ -10,10 +10,10 @@
 			<span class="flex-item"> Elapsed time: <b id="elapsed-time">00:00</b></span>
 		</div>
 		<div class="flex-row">
-			<span class="flex-item"> Player name: <b id="player-name">Demo</b></span>
+			<span class="flex-item"> Player name: <b id="player-name">@Name</b></span>
 		</div>
 		<div class="flex-row">
-			<span class="flex-item"> Round number: <b id="Round-number">00</b></span>
+			<span class="flex-item"> Round number: <b id="Round-number">@(NumberOfRounds+1)</b></span>
 		</div>
 	</div>
 
@@ -77,6 +77,8 @@
 @code {
     [Parameter]
     public EventCallback<int> FirstRoundComplete { get; set; }
+    [Parameter]
+    public string Name { get; set; } = "";
     public Deck TheDeck { get; set; }
     public bool UserWon { get; set; } = false;
     public int NumberOfRounds { get; set; } = 0;

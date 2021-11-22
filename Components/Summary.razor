@@ -1,3 +1,5 @@
+@inject NavigationManager NavigationManager
+
 <div class="container">
     <h1 class="display-1">Summary</h1>
     <p>
@@ -13,7 +15,7 @@
         </tr>
         <tr>
             <th>Total Number of Games</th>
-            <td>9</td>
+            <td>@TotalGames</td>
         </tr>
         <tr>
             <th>Number of Correct Unwinnable Declarations</th>
@@ -21,13 +23,13 @@
         </tr>
         <tr>
             <th>Total Possible Number of Declarations</th>
-            <td>2</td>
+            <td>@TotalUnWins</td>
         </tr>
     </table>
     <p>
         Here's some sick links so you can explore this topic more!
     </p>
-    <button class="btn btn-md btn-primary" @onclick="()=>SummaryContinue.InvokeAsync(true)">Home</button>
+    <button class="btn btn-md btn-primary" @onclick="@(() => NavigationManager.NavigateTo(NavigationManager.Uri, true))">Home</button>
     <button class="btn btn-md btn-primary" @onclick="()=>SummaryContinue.InvokeAsync(false)">Infinite</button>
 </div>
 
@@ -39,4 +41,8 @@
     public int Wins { get; set; }
     [Parameter]
     public int CorrectUnwinnables { get; set; }
+    [Parameter]
+    public int TotalGames { get; set; }
+    [Parameter]
+    public int TotalUnWins { get; set; }
 }

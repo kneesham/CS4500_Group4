@@ -114,7 +114,9 @@ using ZooBreakout.Data;
 #line 118 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
        
     [Parameter]
-    public EventCallback<Tuple<int, int>> SecondRoundComplete { get; set; }
+    public EventCallback<Tuple<int, int, int>> SecondRoundComplete { get; set; }
+    [Parameter]
+    public string Name { get; set; } = "";
     public int CorrectUnwinnables { get; set; } = 0;
     public int Wins { get; set; } = 0;
     public Deck TheDeck { get; set; }
@@ -135,6 +137,7 @@ using ZooBreakout.Data;
     Random random = new Random(DateTime.Now.Millisecond);
     public bool ButtonDisabled { get; set; } = false;
     public string backgroundimg { get; set; } = "";
+    public int TotalUnwinnables { get; set; } = 0;
 
 
     protected override void OnInitialized()
@@ -143,6 +146,8 @@ using ZooBreakout.Data;
         TheDeck = new Deck(2, NumberOfRounds);
         CanStillPlay = true;
         GameWinnable = TheDeck.WinPossible(1);
+        if (!GameWinnable)
+            TotalUnwinnables++;
 
         // pick random card faces
         for (int i = 0; i < 7; i++)
@@ -175,6 +180,8 @@ using ZooBreakout.Data;
             CardFaces[i] = random.Next(Cards.Length);
         Chevrons = new string[7];
         GameWinnable = TheDeck.WinPossible(1);
+        if (!GameWinnable)
+            TotalUnwinnables++;
         UserWon = false;
         CanStillPlay = true;
         ButtonDisabled = false;

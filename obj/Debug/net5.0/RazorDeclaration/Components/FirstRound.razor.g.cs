@@ -115,6 +115,8 @@ using ZooBreakout.Data;
        
     [Parameter]
     public EventCallback<int> FirstRoundComplete { get; set; }
+    [Parameter]
+    public string Name { get; set; } = "";
     public Deck TheDeck { get; set; }
     public bool UserWon { get; set; } = false;
     public int NumberOfRounds { get; set; } = 0;

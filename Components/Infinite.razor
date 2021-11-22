@@ -10,10 +10,10 @@
 			<span class="flex-item"> Elapsed time: <b id="elapsed-time">00:00</b></span>
 		</div>
 		<div class="flex-row">
-			<span class="flex-item"> Player name: <b id="player-name">Demo</b></span>
+			<span class="flex-item"> Player name: <b id="player-name">@Name</b></span>
 		</div>
 		<div class="flex-row">
-			<span class="flex-item"> Round number: <b id="Round-number">00</b></span>
+			<span class="flex-item"> Round number: <b id="Round-number">@(NumberOfRounds+1)</b></span>
 		</div>
 	</div>
 
@@ -97,7 +97,7 @@
                         <p>@UnwinnableString</p>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="@(() => NeedsToPick = true)">Next Game!</a>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" 
-                            @onclick="() => InfiniteComplete.InvokeAsync(Tuple.Create(Wins, CorrectUnwinnables))">Quit</a>
+                            @onclick="() => InfiniteComplete.InvokeAsync(Tuple.Create(Wins, CorrectUnwinnables, TotalGames, TotalUnwinnables))">Quit</a>
                     }
                     else if (!CanStillPlay && !UserWon && !NeedsToPick)
                     {
@@ -105,7 +105,7 @@
                         <h1 class="display-1">You Lost!</h1>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="@(() => NeedsToPick = true)">Next Game!</a>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" 
-                            @onclick="() => InfiniteComplete.InvokeAsync(Tuple.Create(Wins, CorrectUnwinnables))">Quit</a>
+                            @onclick="() => InfiniteComplete.InvokeAsync(Tuple.Create(Wins, CorrectUnwinnables, TotalGames, TotalUnwinnables))">Quit</a>
                     }
                     else if (NumberOfRounds == 0 || NeedsToPick)
                     {
@@ -127,7 +127,9 @@
 
 @code {
     [Parameter]
-    public EventCallback<Tuple<int, int>> InfiniteComplete { get; set; }
+    public EventCallback<Tuple<int, int, int, int>> InfiniteComplete { get; set; }
+    [Parameter]
+    public string Name { get; set; } = "";
     public int CorrectUnwinnables { get; set; } = 0;
     public int Wins { get; set; } = 0;
     public Deck TheDeck { get; set; }
@@ -151,6 +153,8 @@
     public int NumberofCards { get; set; } = 10;
     public bool NeedsToPick { get; set; } = true;
     public bool MessageHidden { get; set; } = true;
+    public int TotalGames { get; set; } = 0;
+    public int TotalUnwinnables { get; set; } = 0;
 
 
     protected override void OnInitialized()
@@ -162,7 +166,9 @@
         TheDeck = new Deck(NumberofCards);
         CanStillPlay = true;
         GameWinnable = TheDeck.WinPossible(1);
-
+        if (!GameWinnable)
+            TotalUnwinnables++;
+        TotalGames++;
         // pick random card faces
         for (int i = 0; i < NumberofCards; i++)
             CardFaces[i] = random.Next(Cards.Length);
@@ -194,7 +200,7 @@
             MessageHidden = false;
             return;
         }
-        
+        TotalGames++;
         MessageHidden = true;
         Chevrons = new string[NumberofCards];
         CardFaces = new int[NumberofCards];
@@ -205,6 +211,8 @@
             CardFaces[i] = random.Next(Cards.Length);
         Chevrons = new string[NumberofCards];
         GameWinnable = TheDeck.WinPossible(1);
+        if (!GameWinnable)
+            TotalUnwinnables++;
         UserWon = false;
         CanStillPlay = true;
         ButtonDisabled = false;
