@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 29 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Explanation.razor"
+#line 268 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Explanation.razor"
        
     [Parameter]
     public EventCallback<bool> ExplanationContinue { get; set; }

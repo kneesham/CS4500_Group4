@@ -1,18 +1,18 @@
 @page "/"
 
-<div hidden="@MainMenuHidden">
+@* <div hidden="@MainMenuHidden">
     <MainMenu StoryChosen="StoryChosen" InfiniteChosen="InfiniteChosen" AboutChosen="AboutChosen" />
 </div>
-<div hidden="@TutorialHidden"> @**@
+<div hidden="@TutorialHidden">
     <Tutorial TutorialContinue="TutorialContinue" />
 </div>
 <div hidden="@FirstRoundHidden">
     <FirstRound FirstRoundComplete="FirstRoundComplete" Name="@Name" />
-</div>
-<div hidden="@ExplanationHidden">
+</div> *@
+<div> @* hidden="@ExplanationHidden"*@
     <Explanation ExplanationContinue="ExplanationContinue" />
 </div>
-<div hidden="@SecondRoundHidden">
+@* <div hidden="@SecondRoundHidden">
     <SecondRound SecondRoundComplete="SecondRoundComplete" Name="@Name" />
 </div>
 <div hidden="@SummaryHidden">
@@ -21,7 +21,7 @@
 </div>
 <div hidden="@InfiniteHidden">
     <Infinite InfiniteComplete="InfiniteComplete" Name="@Name" />
-</div>
+</div> *@
 
 @code {
     public bool MainMenuHidden { get; set; } = false;
