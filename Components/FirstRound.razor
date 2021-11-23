@@ -18,7 +18,7 @@
 	</div>
 
 	<section id="game">
-		<div id="cards">
+		<div id="cards justify-content-center">
 		    @if (!UserWon && GamePossibleToWin)
             {
                 int count = 0;
@@ -27,15 +27,15 @@
                     int index = count;
                     if (card == 0)
                     {
-                        <img src=@Cards[CardFaces[index]] alt="card" width="150px" style="margin:2px;" @onclick="() => CardClicked(index)">
+                        <img src=@Cards[CardFaces[index]] alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
                     }
                     else if (card == 1)
                     {
-                        <img src="../img/cards/back_card.png" alt="card" width="150px" style="margin:2px;" @onclick="() => CardClicked(index)">
+                        <img src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
                     }
                     else
                     {
-                        <img src="../img/cards/blank_card.png" alt="card" width="150px" style="margin:2px; opacity:0;" @onclick="() => CardClicked(index)">
+                        <img src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;max-width:200px; opacity:0;" @onclick="() => CardClicked(index)">
                     }
                     count++;
                 }

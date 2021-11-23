@@ -6,20 +6,20 @@
 <div hidden="@TutorialHidden">
     <Tutorial TutorialContinue="TutorialContinue" />
 </div>
-<div hidden="@FirstRoundHidden">
+<div style="height:100%" hidden="@FirstRoundHidden">
     <FirstRound FirstRoundComplete="FirstRoundComplete" Name="@Name" />
 </div> *@
 <div> @* hidden="@ExplanationHidden"*@
     <Explanation ExplanationContinue="ExplanationContinue" />
 </div>
-@* <div hidden="@SecondRoundHidden">
+@* <div style="height:100%" hidden="@SecondRoundHidden">
     <SecondRound SecondRoundComplete="SecondRoundComplete" Name="@Name" />
 </div>
 <div hidden="@SummaryHidden">
     <Summary SummaryContinue="SummaryContinue" Wins="Wins" CorrectUnwinnables="CorrectUnwinnables" 
         TotalGames="TotalGames" TotalUnWins="TotalUnWins" />
 </div>
-<div hidden="@InfiniteHidden">
+<div style="height:100%" hidden="@InfiniteHidden">
     <Infinite InfiniteComplete="InfiniteComplete" Name="@Name" />
 </div> *@
 
@@ -93,7 +93,7 @@
 
     public void InfiniteComplete(Tuple<int, int, int, int> tuple)
     {
-        Console.Write($"infinite complete: {tuple.Item1} {tuple.Item2}");
+        Console.WriteLine($"infinite complete: {tuple.Item1} {tuple.Item2}");
         Wins += tuple.Item1;
         CorrectUnwinnables += tuple.Item2;
         TotalGames += tuple.Item3;

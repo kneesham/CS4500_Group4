@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 118 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
+#line 161 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
        
     [Parameter]
     public EventCallback<Tuple<int, int, int>> SecondRoundComplete { get; set; }
@@ -125,8 +125,10 @@ using ZooBreakout.Data;
     public bool CanStillPlay { get; set; } = true;
     public bool GameWinnable{ get; set; }
     public string[] Chevrons { get; set; } = new string[7];
-    string draggableDataA = "left";
-    string draggableDataB = "right";
+    public string[] Draggables { get; set; } = new string[] {
+        "greenleft", "greenright", "orangeleft", "orangeright",
+        "purpleleft", "purpleright", "blue", "yellow"
+    };
     public string UnwinnableString { get; set; } = "";
     public string[] Cards = new string[] {
         "../img/cards/bear_card.png", "../img/cards/cat_card.png", "../img/cards/flamingo_card.png", 

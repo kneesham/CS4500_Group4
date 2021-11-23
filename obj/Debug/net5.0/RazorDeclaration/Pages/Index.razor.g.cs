@@ -183,7 +183,7 @@ using ZooBreakout.Data;
 
     public void InfiniteComplete(Tuple<int, int, int, int> tuple)
     {
-        Console.Write($"infinite complete: {tuple.Item1} {tuple.Item2}");
+        Console.WriteLine($"infinite complete: {tuple.Item1} {tuple.Item2}");
         Wins += tuple.Item1;
         CorrectUnwinnables += tuple.Item2;
         TotalGames += tuple.Item3;
