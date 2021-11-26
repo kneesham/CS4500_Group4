@@ -52,6 +52,10 @@
   transition: all 0.3s;
 }
 
+.card1:hover {
+  cursor: pointer;
+}
+
 .card:hover {
   cursor: pointer;
 }

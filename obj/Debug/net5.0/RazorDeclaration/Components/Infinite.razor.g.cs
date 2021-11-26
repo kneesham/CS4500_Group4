@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 168 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
+#line 177 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
        
     [Parameter]
     public EventCallback<Tuple<int, int, int, int>> InfiniteComplete { get; set; }
@@ -174,11 +174,12 @@ using ZooBreakout.Data;
         base.OnInitialized();
     }
 
-    public void CardClicked(int card)
+    public async void CardClicked(int card)
     {
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
         CanStillPlay = TheDeck.WinPossible(0);
+        await JSRuntime.InvokeAsync<string>("CardFlipSound");
     }
 
     public void NextGame()
@@ -230,6 +231,7 @@ using ZooBreakout.Data;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
     }
 }
 #pragma warning restore 1591

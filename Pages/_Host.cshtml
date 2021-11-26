@@ -40,5 +40,13 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+    <script>
+        window.CardFlipSound = function() {
+            document.getElementById('disappear').pause();
+            document.getElementById('disappear').currentTime = 0;
+            document.getElementById('disappear').play();
+        }
+    </script>
+    
 </body>
 </html>

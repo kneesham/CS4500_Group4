@@ -623,6 +623,219 @@
         }
       },
       {
+        "HashCode": 2000811532,
+        "Kind": "Components.Component",
+        "Name": "ZooBreakout.Components.Infinite",
+        "AssemblyName": "ZooBreakout",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Infinite"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "InfiniteComplete",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Tuple<System.Int32, System.Int32, System.Int32, System.Int32>>",
+            "Metadata": {
+              "Common.PropertyName": "InfiniteComplete",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Name",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Name"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "ZooBreakout.Components.Infinite"
+        }
+      },
+      {
+        "HashCode": 1714900109,
+        "Kind": "Components.Component",
+        "Name": "ZooBreakout.Components.Infinite",
+        "AssemblyName": "ZooBreakout",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "ZooBreakout.Components.Infinite"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "InfiniteComplete",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Tuple<System.Int32, System.Int32, System.Int32, System.Int32>>",
+            "Metadata": {
+              "Common.PropertyName": "InfiniteComplete",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Name",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Name"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "ZooBreakout.Components.Infinite",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1387797525,
+        "Kind": "Components.Component",
+        "Name": "ZooBreakout.Components.SecondRound",
+        "AssemblyName": "ZooBreakout",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "SecondRound"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "SecondRoundComplete",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Tuple<System.Int32, System.Int32, System.Int32>>",
+            "Metadata": {
+              "Common.PropertyName": "SecondRoundComplete",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Name",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Name"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "ZooBreakout.Components.SecondRound"
+        }
+      },
+      {
+        "HashCode": 64116559,
+        "Kind": "Components.Component",
+        "Name": "ZooBreakout.Components.SecondRound",
+        "AssemblyName": "ZooBreakout",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "ZooBreakout.Components.SecondRound"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "SecondRoundComplete",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Tuple<System.Int32, System.Int32, System.Int32>>",
+            "Metadata": {
+              "Common.PropertyName": "SecondRoundComplete",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Name",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Name"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "ZooBreakout.Components.SecondRound",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -160498280,
+        "Kind": "Components.Component",
+        "Name": "ZooBreakout.Components.FirstRound",
+        "AssemblyName": "ZooBreakout",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "FirstRound"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "FirstRoundComplete",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Int32>",
+            "Metadata": {
+              "Common.PropertyName": "FirstRoundComplete",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Name",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Name"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "ZooBreakout.Components.FirstRound"
+        }
+      },
+      {
+        "HashCode": -2103378788,
+        "Kind": "Components.Component",
+        "Name": "ZooBreakout.Components.FirstRound",
+        "AssemblyName": "ZooBreakout",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "ZooBreakout.Components.FirstRound"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "FirstRoundComplete",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Int32>",
+            "Metadata": {
+              "Common.PropertyName": "FirstRoundComplete",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Name",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Name"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "ZooBreakout.Components.FirstRound",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": 2008027104,
         "Kind": "Components.Component",
         "Name": "ZooBreakout.Components.MainMenu",
@@ -710,219 +923,6 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "ZooBreakout.Components.MainMenu",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -160498280,
-        "Kind": "Components.Component",
-        "Name": "ZooBreakout.Components.FirstRound",
-        "AssemblyName": "ZooBreakout",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "FirstRound"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "FirstRoundComplete",
-            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Int32>",
-            "Metadata": {
-              "Common.PropertyName": "FirstRoundComplete",
-              "Components.EventCallback": "True"
-            }
-          },
-          {
-            "Kind": "Components.Component",
-            "Name": "Name",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "Name"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "ZooBreakout.Components.FirstRound"
-        }
-      },
-      {
-        "HashCode": -2103378788,
-        "Kind": "Components.Component",
-        "Name": "ZooBreakout.Components.FirstRound",
-        "AssemblyName": "ZooBreakout",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "ZooBreakout.Components.FirstRound"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "FirstRoundComplete",
-            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Int32>",
-            "Metadata": {
-              "Common.PropertyName": "FirstRoundComplete",
-              "Components.EventCallback": "True"
-            }
-          },
-          {
-            "Kind": "Components.Component",
-            "Name": "Name",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "Name"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "ZooBreakout.Components.FirstRound",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -1387797525,
-        "Kind": "Components.Component",
-        "Name": "ZooBreakout.Components.SecondRound",
-        "AssemblyName": "ZooBreakout",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "SecondRound"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "SecondRoundComplete",
-            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Tuple<System.Int32, System.Int32, System.Int32>>",
-            "Metadata": {
-              "Common.PropertyName": "SecondRoundComplete",
-              "Components.EventCallback": "True"
-            }
-          },
-          {
-            "Kind": "Components.Component",
-            "Name": "Name",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "Name"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "ZooBreakout.Components.SecondRound"
-        }
-      },
-      {
-        "HashCode": 64116559,
-        "Kind": "Components.Component",
-        "Name": "ZooBreakout.Components.SecondRound",
-        "AssemblyName": "ZooBreakout",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "ZooBreakout.Components.SecondRound"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "SecondRoundComplete",
-            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Tuple<System.Int32, System.Int32, System.Int32>>",
-            "Metadata": {
-              "Common.PropertyName": "SecondRoundComplete",
-              "Components.EventCallback": "True"
-            }
-          },
-          {
-            "Kind": "Components.Component",
-            "Name": "Name",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "Name"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "ZooBreakout.Components.SecondRound",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": 2000811532,
-        "Kind": "Components.Component",
-        "Name": "ZooBreakout.Components.Infinite",
-        "AssemblyName": "ZooBreakout",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Infinite"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "InfiniteComplete",
-            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Tuple<System.Int32, System.Int32, System.Int32, System.Int32>>",
-            "Metadata": {
-              "Common.PropertyName": "InfiniteComplete",
-              "Components.EventCallback": "True"
-            }
-          },
-          {
-            "Kind": "Components.Component",
-            "Name": "Name",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "Name"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "ZooBreakout.Components.Infinite"
-        }
-      },
-      {
-        "HashCode": 1714900109,
-        "Kind": "Components.Component",
-        "Name": "ZooBreakout.Components.Infinite",
-        "AssemblyName": "ZooBreakout",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "ZooBreakout.Components.Infinite"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "InfiniteComplete",
-            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<System.Tuple<System.Int32, System.Int32, System.Int32, System.Int32>>",
-            "Metadata": {
-              "Common.PropertyName": "InfiniteComplete",
-              "Components.EventCallback": "True"
-            }
-          },
-          {
-            "Kind": "Components.Component",
-            "Name": "Name",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "Name"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "ZooBreakout.Components.Infinite",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

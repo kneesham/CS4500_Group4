@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 74 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/FirstRound.razor"
+#line 84 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/FirstRound.razor"
        
     [Parameter]
     public EventCallback<int> FirstRoundComplete { get; set; }
@@ -153,11 +153,12 @@ using ZooBreakout.Data;
         base.OnInitialized();
     }
 
-    public void CardClicked(int card)
+    public async void CardClicked(int card)
     {
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
         GamePossibleToWin = TheDeck.WinPossible(0);
+        await JSRuntime.InvokeAsync<string>("CardFlipSound");
     }
      
     public void NextGame()
@@ -173,6 +174,7 @@ using ZooBreakout.Data;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
     }
 }
 #pragma warning restore 1591

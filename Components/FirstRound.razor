@@ -1,4 +1,11 @@
+@inject IJSRuntime JSRuntime
+
 <div class="@backgroundimg">
+
+    @* sounds from https://www.fiftysounds.com/ *@
+    <audio id="flip" src="./media/sfx-paperflip1.mp3" />
+    <audio id="disappear" src="./media/sfx-swoosh6.mp3" />
+
     <header>
 		<div class="deck-logo"> <!-- ## Start Logo part ## -->
 			<img src="../img/deck-logo.png" alt="ZooBreakout!"/>
@@ -24,15 +31,15 @@
                     int index = count;
                     if (card == 0)
                     {
-                        <img src=@Cards[CardFaces[index]] alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
+                        <img class="card1" src=@Cards[CardFaces[index]] alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
                     }
                     else if (card == 1)
                     {
-                        <img src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
+                        <img class="card1" src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
                     }
                     else
                     {
-                        <img src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;max-width:200px; opacity:0;" @onclick="() => CardClicked(index)">
+                        <img class="card1" src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;max-width:200px; opacity:0;" @onclick="() => CardClicked(index)">
                     }
                     count++;
                 }
@@ -48,12 +55,14 @@
                 <div id="popup-box-content">
                     @if (UserWon && NumberOfRounds != 5)
                     {
+                        <audio hidden autoplay controls><source src="../media/sfx-victory5.mp3" /></audio>
                         Wins++;
                         <h1 class="display-1">You Won!</h1>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="NextGame">Next Game!</a>
                     }
                     else if (!GamePossibleToWin && !UserWon && NumberOfRounds == 4)
                     {
+                        <audio hidden autoplay controls><source src="../media/sfx-defeat4.mp3" /></audio>
                         <h1 class="display-1"> You Lost!</h1>
                         <p style="font-size: 15px;">But, why? This last game was actually unwinnable. Even if you played it perfectly, you would not have
                             been able to win.<br>Click next to find out why!
@@ -62,6 +71,7 @@
                     }
                     else if (!GamePossibleToWin && !UserWon)
                     {
+                        <audio hidden autoplay controls><source src="../media/sfx-defeat4.mp3" /></audio>
                         <h1 class="display-1">You Lost!</h1>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="NextGame">Next Game!</a>
                     }
@@ -112,11 +122,12 @@
         base.OnInitialized();
     }
 
-    public void CardClicked(int card)
+    public async void CardClicked(int card)
     {
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
         GamePossibleToWin = TheDeck.WinPossible(0);
+        await JSRuntime.InvokeAsync<string>("CardFlipSound");
     }
      
     public void NextGame()

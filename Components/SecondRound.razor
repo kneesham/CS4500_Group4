@@ -1,4 +1,11 @@
+@inject IJSRuntime JSRuntime
+
 <div class="@backgroundimg" style="height:100%">
+
+    @* sounds from https://www.fiftysounds.com/ *@
+    <audio id="flip" src="./media/sfx-paperflip1.mp3" />
+    <audio id="disappear" src="./media/sfx-swoosh6.mp3" />
+
     <header>
 		<div class="deck-logo"> <!-- ## Start Logo part ## -->
 			<img src="../img/deck-logo.png" alt="ZooBreakout!"/>
@@ -27,15 +34,15 @@
                         <div class="col justify-content-center">
                             @if (card == 0)
                             {
-                                <img src=@Cards[CardFaces[index]] alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
+                                <img class="card1" src=@Cards[CardFaces[index]] alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
                             }
                             else if (card == 1)
                             {
-                                <img src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
+                                <img class="card1" src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
                             }
                             else
                             {
-                                <img src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;opacity:0;max-width:200px;" @onclick="() => CardClicked(index)">
+                                <img class="card1" src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;opacity:0;max-width:200px;" @onclick="() => CardClicked(index)">
                             }
                             <DropTarget T="String" Drop="@OnDrop" DropTargetNumber="@index">
                                     <div class="drop-target">
@@ -136,6 +143,7 @@
                 <div id="popup-box-content">
                     @if (UserWon && NumberOfRounds != 5)
                     {
+                        <audio hidden autoplay controls><source src="../media/sfx-victory5.mp3" /></audio>
                         Wins++;
                         <h1 class="display-1">You Won!</h1>
                         <p>@UnwinnableString</p>
@@ -143,12 +151,14 @@
                     }
                     else if (!CanStillPlay && !UserWon)
                     {
+                        <audio hidden autoplay controls><source src="../media/sfx-defeat4.mp3" /></audio>
                         ButtonDisabled = true;
                         <h1 class="display-1">You Lost!</h1>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="NextGame">Next Game!</a>
                     }
                     else if (NumberOfRounds == 5)
                     {
+                        <audio hidden autoplay controls><source src="../media/sfx-victory5.mp3" /></audio>
                         <h1 class="display-4">Second Round Complete!</h1>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" 
                         @onclick="() => SecondRoundComplete.InvokeAsync(Tuple.Create(Wins, CorrectUnwinnables, TotalUnwinnables))">Summary!</a>
@@ -214,11 +224,12 @@
         base.OnInitialized();
     }
 
-    public void CardClicked(int card)
+    public async void CardClicked(int card)
     {
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
         CanStillPlay = TheDeck.WinPossible(0);
+        await JSRuntime.InvokeAsync<string>("CardFlipSound");
     }
 
     public void NextGame()
