@@ -28,24 +28,22 @@
 							}
 							else
 							{
-								<div class="main-menu-input">
-									<div>
-										<h4 class="display-5">Please Enter your name!</h4>
-										<div class="input-group mb-3">
-											<input style="width:20em;" type="text" class="form-control" placeholder="Name" 
-												@bind="Name" @bind:event="oninput">
-										</div>
-										@if (Decision == 1)
-										{
-											<button style="margin-left: 50px;" type="button" class="btn btn-light" 
-												@onclick="() => StoryChosen.InvokeAsync(Name)">Continue</button>
-										}
-										else
-										{
-											<button style="margin-left: 50px;" type="button" class="btn btn-light" 
-												@onclick="() => InfiniteChosen.InvokeAsync(Name)">Continue</button>
-										}
+								<div class="main-menu-input align-content-start align-content align-middle">
+									<h4 class="display-5" style="margin:auto;padding-right:15px;">Please Enter your name!</h4>
+									<div class="input-group mb-3" style="width:20em;margin:auto;">
+										<input style="width:20em;" type="text" class="form-control" placeholder="Name" 
+											@bind="Name" @bind:event="oninput">
 									</div>
+									@if (Decision == 1)
+									{
+										<button type="button" class="btn btn-light" 
+											@onclick="() => StoryChosen.InvokeAsync(Name)">Continue</button>
+									}
+									else
+									{
+										<button type="button" class="btn btn-light" 
+											@onclick="() => InfiniteChosen.InvokeAsync(Name)">Continue</button>
+									}
 								</div>
 							}
 						</div>

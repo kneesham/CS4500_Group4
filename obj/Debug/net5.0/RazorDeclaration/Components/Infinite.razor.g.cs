@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 171 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
+#line 168 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
        
     [Parameter]
     public EventCallback<Tuple<int, int, int, int>> InfiniteComplete { get; set; }

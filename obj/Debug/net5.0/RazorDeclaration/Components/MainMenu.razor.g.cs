@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 65 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/MainMenu.razor"
+#line 63 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/MainMenu.razor"
        
     [Parameter]
     public EventCallback<string> StoryChosen { get; set; }

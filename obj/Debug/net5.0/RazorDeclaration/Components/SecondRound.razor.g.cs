@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 161 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
+#line 162 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
        
     [Parameter]
     public EventCallback<Tuple<int, int, int>> SecondRoundComplete { get; set; }
@@ -207,6 +207,11 @@ using ZooBreakout.Data;
         {
             UnwinnableString = "You are wrong! You can win this game!";
         }
+    }
+
+    public void ResetDeck()
+    {
+        
     }
 
 #line default

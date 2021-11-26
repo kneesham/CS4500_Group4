@@ -7,9 +7,6 @@
 	
 	<div class="flex-container">
 		<div class="flex-row">
-			<span class="flex-item"> Elapsed time: <b id="elapsed-time">00:00</b></span>
-		</div>
-		<div class="flex-row">
 			<span class="flex-item"> Player name: <b id="player-name">@Name</b></span>
 		</div>
 		<div class="flex-row">
@@ -59,7 +56,7 @@
                     {
                         <h1 class="display-1"> You Lost!</h1>
                         <p style="font-size: 15px;">But, why? This last game was actually unwinnable. Even if you played it perfectly, you would not have
-                            been able to win. Click next to find out why!
+                            been able to win.<br>Click next to find out why!
                         </p>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="() => FirstRoundComplete.InvokeAsync(Wins)">Next</a>
                     }

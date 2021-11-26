@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 77 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/FirstRound.razor"
+#line 74 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/FirstRound.razor"
        
     [Parameter]
     public EventCallback<int> FirstRoundComplete { get; set; }

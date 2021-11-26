@@ -6,6 +6,8 @@ namespace ZooBreakout.Models
     public class Deck
     {
         public List<int> Cards { get; set; } = new List<int>();
+        public List<int> InitCards { get; set; } = new List<int>();
+        public int LastCardTouched { get; set; } = -1;
 
         // constructor for infinite play
         public Deck(int numberOfCards)
@@ -15,11 +17,13 @@ namespace ZooBreakout.Models
                 Random r = new Random();
                 Cards.Add(r.Next(0, 2));
             }
+            InitCards = new List<int>(Cards);
         }
 
         // constructor used for the first and second round razor pages
         public Deck(int roundpage, int round)
         {
+            // page one has a set 5 games
             if (roundpage == 1)
             {
                 switch(round)
@@ -37,6 +41,7 @@ namespace ZooBreakout.Models
                     default: break;
                 }
             }
+            // page 2 has a set 5 games
             else
             {
                 switch(round)
@@ -54,6 +59,7 @@ namespace ZooBreakout.Models
                     default: break;
                 }
             }
+            InitCards = new List<int>(Cards);
         }
 
         public void ChangeCard(int card)
@@ -72,6 +78,7 @@ namespace ZooBreakout.Models
                         Cards[card+1] = 1 - Cards[card+1];
                 }
             }
+            LastCardTouched = card;
         }
 
         private bool DeckEmpty()
@@ -108,6 +115,24 @@ namespace ZooBreakout.Models
             for (int i = 0; i < Cards.Count; i++)
             {
                 Console.WriteLine(Cards[i]);
+            }
+        }
+
+        public void ResetDeck()
+        {
+            Cards = new List<int>(InitCards);
+        }
+
+        public void UndoLastMove()
+        {
+            if (LastCardTouched != -1)
+            {
+                Cards[LastCardTouched] = 0;
+                if (LastCardTouched != 0)
+                    Cards[LastCardTouched-1] = 1 - Cards[LastCardTouched-1];
+                if (LastCardTouched != Cards.Count-1)
+                    Cards[LastCardTouched+1] = 1 - Cards[LastCardTouched+1];
+                LastCardTouched = -1;
             }
         }
     }
