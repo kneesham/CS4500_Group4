@@ -3,6 +3,13 @@ using System.Collections.Generic;
 
 namespace ZooBreakout.Models 
 {
+
+    /*
+        This class represents the cards that are
+        layed out on the board. It is used to keep track of the
+        game status and moves.
+    */
+
     public class Deck
     {
         public List<int> Cards { get; set; } = new List<int>();
@@ -62,25 +69,27 @@ namespace ZooBreakout.Models
             InitCards = new List<int>(Cards);
         }
 
+        // flips all the corresponding cards
         public void ChangeCard(int card)
         {
-            if (Cards[card] == 0)
+            if (Cards[card] == 0)   // if the card isn't face down
             {
                 Cards[card] = 2;
-                if (card != 0)
+                if (card != 0)      // if the card isn't in the far left position
                 {
                     if (Cards[card-1] != 2)
                         Cards[card-1] = 1 - Cards[card-1];
                 }
-                if (card != Cards.Count-1)
+                if (card != Cards.Count-1)  // if the card isn't in the far right position
                 {
                     if (Cards[card+1] != 2)
                         Cards[card+1] = 1 - Cards[card+1];
                 }
             }
-            LastCardTouched = card;
+            LastCardTouched = card; // record the last changed card
         }
 
+        // returns if deck is empty
         private bool DeckEmpty()
         {
             for (int i = 0; i < Cards.Count; i++)
@@ -91,11 +100,13 @@ namespace ZooBreakout.Models
             return true;
         }
 
+        // determines if a win is true
         public bool CheckWin()
         {
             return DeckEmpty();
         }
 
+        // determines if it is possible for the player to win
         public bool WinPossible(int option)
         {
             int faceUp = 0;
@@ -110,6 +121,7 @@ namespace ZooBreakout.Models
                 return (faceUp != 0);
         }
 
+        // prints the deck to the console
         public void PrintDeck()
         {
             for (int i = 0; i < Cards.Count; i++)
@@ -118,11 +130,13 @@ namespace ZooBreakout.Models
             }
         }
 
+        // resets the deck to its initial state
         public void ResetDeck()
         {
             Cards = new List<int>(InitCards);
         }
 
+        // undoes the last move
         public void UndoLastMove()
         {
             if (LastCardTouched != -1)

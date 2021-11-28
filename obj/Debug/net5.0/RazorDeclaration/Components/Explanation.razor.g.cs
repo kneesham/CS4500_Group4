@@ -111,14 +111,14 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 274 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Explanation.razor"
+#line 276 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Explanation.razor"
        
     [Parameter]
     public EventCallback<bool> ExplanationContinue { get; set; }
-    public bool[] Hidden { get; set; } = new bool[] {
+    public bool[] Hidden { get; set; } = new bool[] {       // array to cycle through "pages" of information
         false, true, true, true
     };
-    public void ShowNext(int i)
+    public void ShowNext(int i)             // shows next page on button click
     {
         Hidden[i] = true;
         Hidden[i+1] = false;

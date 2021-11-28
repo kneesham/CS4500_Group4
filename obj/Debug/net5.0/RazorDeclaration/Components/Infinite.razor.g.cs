@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 177 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
+#line 179 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
        
     [Parameter]
     public EventCallback<Tuple<int, int, int, int>> InfiniteComplete { get; set; }
@@ -174,7 +174,7 @@ using ZooBreakout.Data;
         base.OnInitialized();
     }
 
-    public async void CardClicked(int card)
+    public async void CardClicked(int card)         // called when a user clicks a card
     {
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
@@ -182,7 +182,7 @@ using ZooBreakout.Data;
         await JSRuntime.InvokeAsync<string>("CardFlipSound");
     }
 
-    public void NextGame()
+    public void NextGame()                      // called when a user completes a game
     {
         // validate user input
         if (NumberofCards < 1 || NumberofCards > 15)
@@ -209,12 +209,12 @@ using ZooBreakout.Data;
         UnwinnableString = "";
     }
 
-    public void OnDrop(Tuple<int, string> data)
+    public void OnDrop(Tuple<int, string> data)     // called when a user drops an image in a box
     {
         Chevrons[data.Item1] = data.Item2;
     }
 
-    public void Unwinnable()
+    public void Unwinnable()                        // determines if the user was correct when stating the game is unwinnable
     {
         if (!GameWinnable)
         {

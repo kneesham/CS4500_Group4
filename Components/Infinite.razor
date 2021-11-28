@@ -1,3 +1,5 @@
+@* This is the infinite mode *@
+
 @inject IJSRuntime JSRuntime
 
 <div class="@backgroundimg">
@@ -236,7 +238,7 @@
         base.OnInitialized();
     }
 
-    public async void CardClicked(int card)
+    public async void CardClicked(int card)         // called when a user clicks a card
     {
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
@@ -244,7 +246,7 @@
         await JSRuntime.InvokeAsync<string>("CardFlipSound");
     }
 
-    public void NextGame()
+    public void NextGame()                      // called when a user completes a game
     {
         // validate user input
         if (NumberofCards < 1 || NumberofCards > 15)
@@ -271,12 +273,12 @@
         UnwinnableString = "";
     }
 
-    public void OnDrop(Tuple<int, string> data)
+    public void OnDrop(Tuple<int, string> data)     // called when a user drops an image in a box
     {
         Chevrons[data.Item1] = data.Item2;
     }
 
-    public void Unwinnable()
+    public void Unwinnable()                        // determines if the user was correct when stating the game is unwinnable
     {
         if (!GameWinnable)
         {

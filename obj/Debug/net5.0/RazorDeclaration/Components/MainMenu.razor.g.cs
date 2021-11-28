@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 65 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/MainMenu.razor"
+#line 68 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/MainMenu.razor"
        
     [Parameter]
     public EventCallback<string> StoryChosen { get; set; }
@@ -132,7 +132,6 @@ using ZooBreakout.Data;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
     }
 }
 #pragma warning restore 1591

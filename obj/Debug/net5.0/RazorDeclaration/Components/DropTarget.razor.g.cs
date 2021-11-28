@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 8 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/DropTarget.razor"
+#line 10 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/DropTarget.razor"
        
     [Parameter]
     public RenderFragment ChildContent { get; set; }

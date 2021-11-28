@@ -1,3 +1,5 @@
+@* This is the second round of the story gameplay *@
+
 @inject IJSRuntime JSRuntime
 
 <div class="@backgroundimg" style="height:100%">
@@ -224,7 +226,7 @@
         base.OnInitialized();
     }
 
-    public async void CardClicked(int card)
+    public async void CardClicked(int card)     // called when a card is clicked
     {
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
@@ -232,7 +234,7 @@
         await JSRuntime.InvokeAsync<string>("CardFlipSound");
     }
 
-    public void NextGame()
+    public void NextGame()                      // called when a game is complete
     {
         NumberOfRounds++;
         TheDeck = new Deck(2, NumberOfRounds);
@@ -248,12 +250,12 @@
         UnwinnableString = "";
     }
 
-    public void OnDrop(Tuple<int, string> data)
+    public void OnDrop(Tuple<int, string> data)     // called when the user drops a chevron
     {
         Chevrons[data.Item1] = data.Item2;
     }
 
-    public void Unwinnable()
+    public void Unwinnable()                // called when a user declares unwinnable
     {
         if (!GameWinnable)
         {
@@ -265,10 +267,5 @@
         {
             UnwinnableString = "You are wrong! You can win this game!";
         }
-    }
-
-    public void ResetDeck()
-    {
-        
     }
 }

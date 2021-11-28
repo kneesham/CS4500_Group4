@@ -1,4 +1,8 @@
 @page "/"
+@inject IJSRuntime JSRuntime
+
+@* https://freemusicarchive.org/search?adv=1&quicksearch=african&only-instrumental=1&& *@
+    @* <audio id="maintheme" src="./media/maintheme.mp3" /> *@
 
 <div hidden="@MainMenuHidden">
     <MainMenu StoryChosen="StoryChosen" InfiniteChosen="InfiniteChosen" AboutChosen="AboutChosen" />
@@ -22,6 +26,9 @@
 <div style="height:100%" hidden="@InfiniteHidden">
     <Infinite InfiniteComplete="InfiniteComplete" Name="@Name" />
 </div>
+<div hidden="@AboutHidden">
+    <AboutUs Back="Back" />
+</div>
 
 @code {
     public bool MainMenuHidden { get; set; } = false;
@@ -31,6 +38,7 @@
     public bool SecondRoundHidden { get; set; } = true;
     public bool SummaryHidden { get; set; } = true;
     public bool InfiniteHidden { get; set; } = true;
+    public bool AboutHidden { get; set; } = true;
     public int Wins { get; set; } = 0;
     public int TotalGames { get; set; } = 0;
     public int CorrectUnwinnables { get; set; } = 0;
@@ -38,6 +46,13 @@
     public string Name { get; set; } = "";
 
 
+    @* protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        Console.WriteLine("here");
+        await JSRuntime.InvokeAsync<string>("PlayMainTheme");
+    } *@
+    
+    // called when story mode is chosen
     public void StoryChosen(string name) 
     {
         Name = name;
@@ -45,6 +60,7 @@
         TutorialHidden = false;
     }
 
+    // called when infinite mode is chosen
     public void InfiniteChosen(string name) 
     {
         Name = name;
@@ -52,11 +68,15 @@
         InfiniteHidden = false;
     }
 
+    // called when about us is chosen
     public void AboutChosen(bool about) 
     {
         Console.WriteLine($"about: {about}");
+        MainMenuHidden = true;
+        AboutHidden = false;
     }
 
+    // called when tutorial is finished
     public void TutorialContinue(bool continued) 
     {
         Console.WriteLine($"coninued: {continued}");
@@ -64,6 +84,7 @@
         FirstRoundHidden = false;
     }
 
+    // called when round one is finished
     public void FirstRoundComplete(int wins) 
     {
         Console.WriteLine($"complete: {wins}");
@@ -73,6 +94,7 @@
         TotalGames += 4;
     }
 
+    // called when explanation page is finished
     public void ExplanationContinue(bool continued)
     {
         Console.WriteLine($"continued: {continued}");
@@ -80,6 +102,7 @@
         SecondRoundHidden = false;
     }
 
+    // called when second rounds is finished
     public void SecondRoundComplete(Tuple<int, int, int> tuple)
     {
         Console.WriteLine($"second complete: {tuple.Item1} {tuple.Item2}");
@@ -91,6 +114,7 @@
         SummaryHidden = false;
     }
 
+    // called when infinite is finished
     public void InfiniteComplete(Tuple<int, int, int, int> tuple)
     {
         Console.WriteLine($"infinite complete: {tuple.Item1} {tuple.Item2}");
@@ -102,6 +126,7 @@
         SummaryHidden = false;
     }
 
+    // called when summary is finished
     public void SummaryContinue(bool continued)
     {
         Console.WriteLine($"continued: {continued}");
@@ -114,5 +139,13 @@
         {
             InfiniteHidden = false;
         }
+    }
+    
+    // called when about us page is finished
+    public void Back(bool back)
+    {
+        Console.WriteLine($"back: {back}");
+        AboutHidden = true;
+        MainMenuHidden = false;
     }
 }

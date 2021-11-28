@@ -1,3 +1,5 @@
+@* This is the first round of the story mode gameplay *@
+
 @inject IJSRuntime JSRuntime
 
 <div class="@backgroundimg">
@@ -122,7 +124,8 @@
         base.OnInitialized();
     }
 
-    public async void CardClicked(int card)
+
+    public async void CardClicked(int card)         // called when a card is clicked. It flips the corresponding cards
     {
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
@@ -130,7 +133,7 @@
         await JSRuntime.InvokeAsync<string>("CardFlipSound");
     }
      
-    public void NextGame()
+    public void NextGame()                          // called when a game is complete and the user continues
     {
         NumberOfRounds++;
         TheDeck = new Deck(1, NumberOfRounds);

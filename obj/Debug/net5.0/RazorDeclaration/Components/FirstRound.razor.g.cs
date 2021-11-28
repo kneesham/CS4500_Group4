@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 84 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/FirstRound.razor"
+#line 86 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/FirstRound.razor"
        
     [Parameter]
     public EventCallback<int> FirstRoundComplete { get; set; }
@@ -153,7 +153,8 @@ using ZooBreakout.Data;
         base.OnInitialized();
     }
 
-    public async void CardClicked(int card)
+
+    public async void CardClicked(int card)         // called when a card is clicked. It flips the corresponding cards
     {
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
@@ -161,7 +162,7 @@ using ZooBreakout.Data;
         await JSRuntime.InvokeAsync<string>("CardFlipSound");
     }
      
-    public void NextGame()
+    public void NextGame()                          // called when a game is complete and the user continues
     {
         NumberOfRounds++;
         TheDeck = new Deck(1, NumberOfRounds);

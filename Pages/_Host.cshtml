@@ -24,6 +24,7 @@
 	<link href="css/deck.css" rel="stylesheet" type="text/css">
     <link href="css/tutorial.css" rel="stylesheet" type="text/css">
     <link href="css/explanation.css" rel="stylesheet" type="text/css">
+    <link href="css/about.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <component type="typeof(App)" render-mode="ServerPrerendered" />
@@ -45,7 +46,14 @@
             document.getElementById('disappear').pause();
             document.getElementById('disappear').currentTime = 0;
             document.getElementById('disappear').play();
-        }
+        };
+    </script>
+    <script>
+        @* window.PlayMainTheme = function() {
+            document.getElementById('maintheme').pause();
+            document.getElementById('maintheme').currentTime = 0;
+            document.getElementById('maintheme').play();
+        }; *@
     </script>
     
 </body>

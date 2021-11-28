@@ -130,3 +130,5 @@
 /Users/anthony/Documents/GitHub/CS4500_Group4/obj/Debug/net5.0/ZooBreakout.pdb
 /Users/anthony/Documents/GitHub/CS4500_Group4/obj/Debug/net5.0/ZooBreakout.genruntimeconfig.cache
 /Users/anthony/Documents/GitHub/CS4500_Group4/obj/Debug/net5.0/ZooBreakout.csproj.CopyComplete
+/Users/anthony/Documents/GitHub/CS4500_Group4/obj/Debug/net5.0/RazorDeclaration/Components/AboutUs.razor.g.cs
+/Users/anthony/Documents/GitHub/CS4500_Group4/obj/Debug/net5.0/Razor/Components/AboutUs.razor.g.cs

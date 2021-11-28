@@ -1,3 +1,5 @@
+@* This compoenet contains the explanation of how to win and use the chevrons *@
+
 <div class="row align-items-center justify-content-center explanation-row" hidden="@Hidden[0]">
     <div class="col-4">
         <h1 class="display-2">Why you couldn't win.</h1>
@@ -274,10 +276,10 @@
 @code {
     [Parameter]
     public EventCallback<bool> ExplanationContinue { get; set; }
-    public bool[] Hidden { get; set; } = new bool[] {
+    public bool[] Hidden { get; set; } = new bool[] {       // array to cycle through "pages" of information
         false, true, true, true
     };
-    public void ShowNext(int i)
+    public void ShowNext(int i)             // shows next page on button click
     {
         Hidden[i] = true;
         Hidden[i+1] = false;

@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 7 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Draggable.razor"
+#line 9 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Draggable.razor"
        
     [Parameter]
     public RenderFragment ChildContent { get; set; }

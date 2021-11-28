@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 172 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
+#line 174 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
        
     [Parameter]
     public EventCallback<Tuple<int, int, int>> SecondRoundComplete { get; set; }
@@ -167,7 +167,7 @@ using ZooBreakout.Data;
         base.OnInitialized();
     }
 
-    public async void CardClicked(int card)
+    public async void CardClicked(int card)     // called when a card is clicked
     {
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
@@ -175,7 +175,7 @@ using ZooBreakout.Data;
         await JSRuntime.InvokeAsync<string>("CardFlipSound");
     }
 
-    public void NextGame()
+    public void NextGame()                      // called when a game is complete
     {
         NumberOfRounds++;
         TheDeck = new Deck(2, NumberOfRounds);
@@ -191,12 +191,12 @@ using ZooBreakout.Data;
         UnwinnableString = "";
     }
 
-    public void OnDrop(Tuple<int, string> data)
+    public void OnDrop(Tuple<int, string> data)     // called when the user drops a chevron
     {
         Chevrons[data.Item1] = data.Item2;
     }
 
-    public void Unwinnable()
+    public void Unwinnable()                // called when a user declares unwinnable
     {
         if (!GameWinnable)
         {
@@ -208,11 +208,6 @@ using ZooBreakout.Data;
         {
             UnwinnableString = "You are wrong! You can win this game!";
         }
-    }
-
-    public void ResetDeck()
-    {
-        
     }
 
 #line default
