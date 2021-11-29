@@ -1,8 +1,5 @@
 @* This is the main menu for the game *@
 
-@* @inject IJSRuntime JSRuntime *@
-
-@* <audio id="maintheme" src="./media/maintheme.mp3" /> *@
 <div id="main-wrapper" class="split-container abs-fs">
 		<div class="container-fluid">
 			<div class="row">
@@ -22,6 +19,7 @@
 						    </p>
 							@if (PopupHidden)
 							{
+								@* navigation buttons *@
 								<p>
 									<a class="st-btn btn-fill" data-toggle="modal" data-target="#" 
 										@onclick="@(() => ShowPopup(1))">Story Mode</a>
@@ -33,21 +31,25 @@
 							}
 							else
 							{
+								@* getting user's name *@
 								<div class="main-menu-input align-content-start align-content align-middle">
 									<h4 class="display-5" style="margin:auto;padding-right:15px;">Please Enter your name!</h4>
 									<div class="input-group mb-3" style="width:20em;margin:auto;">
 										<input style="width:20em;" type="text" class="form-control" placeholder="Name" 
 											@bind="Name" @bind:event="oninput">
 									</div>
-									@if (Decision == 1)
+									@if (Name != "")
 									{
-										<button type="button" class="btn btn-light" 
-											@onclick="() => StoryChosen.InvokeAsync(Name)">Continue</button>
-									}
-									else
-									{
-										<button type="button" class="btn btn-light" 
-											@onclick="() => InfiniteChosen.InvokeAsync(Name)">Continue</button>
+										@if (Decision == 1)
+										{
+											<button type="button" class="btn btn-light" 
+												@onclick="() => StoryChosen.InvokeAsync(Name)">Continue</button>
+										}
+										else
+										{
+											<button type="button" class="btn btn-light" 
+												@onclick="() => InfiniteChosen.InvokeAsync(Name)">Continue</button>
+										}
 									}
 								</div>
 							}

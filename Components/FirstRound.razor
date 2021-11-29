@@ -14,6 +14,7 @@
 		</div> <!-- ## End Logo part ## -->
 	</header>
 	
+    @* player info *@
 	<div class="flex-container">
 		<div class="flex-row">
 			<span class="flex-item"> Player name: <b id="player-name">@Name</b></span>
@@ -28,6 +29,7 @@
 		    @if (!UserWon && GamePossibleToWin)
             {
                 int count = 0;
+                @* displaying cards *@
                 @foreach(var card in TheDeck.Cards)
                 {
                     int index = count;
@@ -49,12 +51,14 @@
 		</div> <!-- #cards -->
 	</section> <!-- #game -->
 
+    @* different popups for scnerios *@
     @if (UserWon || !GamePossibleToWin)
     {
         <section id="popup">
             <div id="popup-bg"></div>
             <div id="popup-box">
                 <div id="popup-box-content">
+                    @* if the user won *@
                     @if (UserWon && NumberOfRounds != 5)
                     {
                         <audio hidden autoplay controls><source src="../media/sfx-victory5.mp3" /></audio>
@@ -62,6 +66,7 @@
                         <h1 class="display-1">You Won!</h1>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="NextGame">Next Game!</a>
                     }
+                    @* if the first round is complete *@
                     else if (!GamePossibleToWin && !UserWon && NumberOfRounds == 4)
                     {
                         <audio hidden autoplay controls><source src="../media/sfx-defeat4.mp3" /></audio>
@@ -71,6 +76,7 @@
                         </p>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="() => FirstRoundComplete.InvokeAsync(Wins)">Next</a>
                     }
+                    @* if the user lost *@
                     else if (!GamePossibleToWin && !UserWon)
                     {
                         <audio hidden autoplay controls><source src="../media/sfx-defeat4.mp3" /></audio>
@@ -127,6 +133,7 @@
 
     public async void CardClicked(int card)         // called when a card is clicked. It flips the corresponding cards
     {
+        // flip cards, check win/loss, and update screen
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
         GamePossibleToWin = TheDeck.WinPossible(0);
@@ -135,6 +142,7 @@
      
     public void NextGame()                          // called when a game is complete and the user continues
     {
+        // reset the game
         NumberOfRounds++;
         TheDeck = new Deck(1, NumberOfRounds);
         for (int i = 0; i < 5; i++)

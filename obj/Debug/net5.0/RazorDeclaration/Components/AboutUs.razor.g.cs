@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 36 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/AboutUs.razor"
+#line 41 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/AboutUs.razor"
        
     [Parameter]
     public EventCallback<bool> Back { get; set; }   // returns true on button click

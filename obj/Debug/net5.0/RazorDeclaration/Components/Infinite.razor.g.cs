@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 179 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
+#line 193 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
        
     [Parameter]
     public EventCallback<Tuple<int, int, int, int>> InfiniteComplete { get; set; }
@@ -176,6 +176,7 @@ using ZooBreakout.Data;
 
     public async void CardClicked(int card)         // called when a user clicks a card
     {
+        // flip cards, check win/loss, and update screen
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
         CanStillPlay = TheDeck.WinPossible(0);
@@ -190,6 +191,8 @@ using ZooBreakout.Data;
             MessageHidden = false;
             return;
         }
+
+        //reset the game
         TotalGames++;
         MessageHidden = true;
         Chevrons = new string[NumberofCards];
@@ -211,6 +214,7 @@ using ZooBreakout.Data;
 
     public void OnDrop(Tuple<int, string> data)     // called when a user drops an image in a box
     {
+        // update chevron array
         Chevrons[data.Item1] = data.Item2;
     }
 

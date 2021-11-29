@@ -120,7 +120,7 @@ using ZooBreakout.Data;
     [Parameter]
     public T Data { get; set; }
 
-    public void OnDragStart()
+    public void OnDragStart()       // called when an object is drug
     {
         DragAndDropService.StartDrag(Data, Zone);
     }

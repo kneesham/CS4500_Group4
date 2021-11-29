@@ -1,4 +1,4 @@
-<div style="width:99%;">
+<div style="width:99%;min-height:calc(100vh - 60px);">
     <div class="row">
         <div class="col">
             <div class="about-div">
@@ -24,6 +24,8 @@
                     <a href="https://www.flaticon.com/free-icon/down-arrow_892629?term=arrow%20down&page=2&position=66&page=2&position=66&related_id=892629&origin=search">Down Arrow</a><br>
                 </p>
             </div>
+
+            @* button to return to main menu *@
             <a style="margin:15px;" class="st-btn btn-fill" data-toggle="modal" data-target="#" 
                 @onclick="@(() => Back.InvokeAsync(true))">Back</a>
         </div>
@@ -32,6 +34,9 @@
         </div>
     </div>
 </div>
+<footer>
+    <p style="color:black;">Zoo breakout! - The Flying Purple Monkeys - CS 4500, Fall 2021</p>
+</footer>
 
 @code {
     [Parameter]

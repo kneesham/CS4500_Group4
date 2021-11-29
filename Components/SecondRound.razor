@@ -2,7 +2,7 @@
 
 @inject IJSRuntime JSRuntime
 
-<div class="@backgroundimg" style="height:100%">
+<div class="@backgroundimg">
 
     @* sounds from https://www.fiftysounds.com/ *@
     <audio id="flip" src="./media/sfx-paperflip1.mp3" />
@@ -14,6 +14,7 @@
 		</div> <!-- ## End Logo part ## -->
 	</header>
 	
+    @* player info *@
 	<div class="flex-container">
 		<div class="flex-row">
 			<span class="flex-item"> Player name: <b id="player-name">@Name</b></span>
@@ -29,6 +30,8 @@
             @if (!UserWon && NumberOfRounds != 5 && CanStillPlay)
             {
                 int count = 0;
+
+                @* cards and drop targets for chevrons *@
                 <div class="row">
                     @foreach(var card in TheDeck.Cards)
                     {
@@ -75,6 +78,8 @@
                         count++;
                     }
                 </div>
+
+                @* all draggable objects *@
                 <div class="row">
                     <div class="col-2">
                         <Draggable Data="@Draggables[0]">
@@ -124,6 +129,8 @@
                             </div>
                         </Draggable>
                     </div>
+
+                    @* game decision buttons *@
                     <div class="col-4 d-flex align-items-center justify-content-center">
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" 
                         disabled="@ButtonDisabled" @onclick="Unwinnable">Unwinnable!</a>
@@ -137,12 +144,14 @@
 		</div> <!-- #cards -->
 	</section> <!-- #game -->
 
+    @* different popups for scenerios *@
     @if (UserWon || (!CanStillPlay && !UserWon) || NumberOfRounds == 5)
     {
         <section id="popup">
             <div id="popup-bg"></div>
             <div id="popup-box">
                 <div id="popup-box-content">
+                    @* if the user won *@
                     @if (UserWon && NumberOfRounds != 5)
                     {
                         <audio hidden autoplay controls><source src="../media/sfx-victory5.mp3" /></audio>
@@ -151,6 +160,7 @@
                         <p>@UnwinnableString</p>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="NextGame">Next Game!</a>
                     }
+                    @* if the user lost *@
                     else if (!CanStillPlay && !UserWon)
                     {
                         <audio hidden autoplay controls><source src="../media/sfx-defeat4.mp3" /></audio>
@@ -158,6 +168,7 @@
                         <h1 class="display-1">You Lost!</h1>
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="NextGame">Next Game!</a>
                     }
+                    @* if the second round of gameplay is finished *@
                     else if (NumberOfRounds == 5)
                     {
                         <audio hidden autoplay controls><source src="../media/sfx-victory5.mp3" /></audio>
@@ -228,6 +239,7 @@
 
     public async void CardClicked(int card)     // called when a card is clicked
     {
+        // change te card, check if they won/lost, and update the screen
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
         CanStillPlay = TheDeck.WinPossible(0);
@@ -236,6 +248,7 @@
 
     public void NextGame()                      // called when a game is complete
     {
+        // reset game
         NumberOfRounds++;
         TheDeck = new Deck(2, NumberOfRounds);
         for (int i = 0; i < 7; i++)
@@ -252,11 +265,13 @@
 
     public void OnDrop(Tuple<int, string> data)     // called when the user drops a chevron
     {
+        // update array
         Chevrons[data.Item1] = data.Item2;
     }
 
     public void Unwinnable()                // called when a user declares unwinnable
     {
+        // output correct string
         if (!GameWinnable)
         {
             UnwinnableString = "You are right! The game is unwinnable";

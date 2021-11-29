@@ -29,6 +29,8 @@
             @if (!UserWon && CanStillPlay)
             {
                 int count = 0;
+
+                @* displaying cards and drop targets for chevrons *@
                 <div class="row">
                     @foreach(var card in TheDeck.Cards)
                     {
@@ -75,6 +77,8 @@
                         count++;
                     }
                 </div>
+
+                @* all draggable objects *@
                 <div class="row">
                     <div class="col-2">
                         <Draggable Data="@Draggables[0]">
@@ -124,21 +128,29 @@
                             </div>
                         </Draggable>
                     </div>
+
+                    @* game decision buttons *@
                     <div class="col-4 d-flex align-items-center justify-content-center">
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" 
                         disabled="@ButtonDisabled" @onclick="Unwinnable">Unwinnable!</a>
+                        <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" 
+                        disabled="@ButtonDisabled" @onclick="() => TheDeck.UndoLastMove()">Undo</a>
+                        <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" 
+                        disabled="@ButtonDisabled" @onclick="() => TheDeck.ResetDeck()">Reset</a>
                     </div>
                 </div>
             }
 		</div> <!-- #cards -->
 	</section> <!-- #game -->
 
+    @* Different popups for scenerios *@
     @if (UserWon || (!CanStillPlay && !UserWon) || NumberOfRounds == 0)
     {
         <section id="popup">
             <div id="popup-bg"></div>
             <div id="popup-box">
                 <div id="popup-box-content">
+                    @* if the user won *@
                     @if (UserWon && !NeedsToPick)
                     {
                         <audio hidden autoplay controls><source src="../media/sfx-victory5.mp3" /></audio>
@@ -149,6 +161,7 @@
                         <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" 
                             @onclick="() => InfiniteComplete.InvokeAsync(Tuple.Create(Wins, CorrectUnwinnables, TotalGames, TotalUnwinnables))">Quit</a>
                     }
+                    @* if the user lost *@
                     else if (!CanStillPlay && !UserWon && !NeedsToPick)
                     {
                         <audio hidden autoplay controls><source src="../media/sfx-defeat4.mp3" /></audio>
@@ -160,6 +173,7 @@
                     }
                     else if (NumberOfRounds == 0 || NeedsToPick)
                     {
+                        @* if the user needs to pick the next amount of cards for the next round *@
                         ButtonDisabled = true;
                         <h1 class="display-5">Choose Deck Size</h1>
                         <p style="font-size:20px">(Between 1 and 15)</p>
@@ -240,6 +254,7 @@
 
     public async void CardClicked(int card)         // called when a user clicks a card
     {
+        // flip cards, check win/loss, and update screen
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
         CanStillPlay = TheDeck.WinPossible(0);
@@ -254,6 +269,8 @@
             MessageHidden = false;
             return;
         }
+
+        //reset the game
         TotalGames++;
         MessageHidden = true;
         Chevrons = new string[NumberofCards];
@@ -275,6 +292,7 @@
 
     public void OnDrop(Tuple<int, string> data)     // called when a user drops an image in a box
     {
+        // update chevron array
         Chevrons[data.Item1] = data.Item2;
     }
 

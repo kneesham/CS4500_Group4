@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 174 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
+#line 185 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/SecondRound.razor"
        
     [Parameter]
     public EventCallback<Tuple<int, int, int>> SecondRoundComplete { get; set; }
@@ -169,6 +169,7 @@ using ZooBreakout.Data;
 
     public async void CardClicked(int card)     // called when a card is clicked
     {
+        // change te card, check if they won/lost, and update the screen
         TheDeck.ChangeCard(card);
         UserWon = TheDeck.CheckWin();
         CanStillPlay = TheDeck.WinPossible(0);
@@ -177,6 +178,7 @@ using ZooBreakout.Data;
 
     public void NextGame()                      // called when a game is complete
     {
+        // reset game
         NumberOfRounds++;
         TheDeck = new Deck(2, NumberOfRounds);
         for (int i = 0; i < 7; i++)
@@ -193,11 +195,13 @@ using ZooBreakout.Data;
 
     public void OnDrop(Tuple<int, string> data)     // called when the user drops a chevron
     {
+        // update array
         Chevrons[data.Item1] = data.Item2;
     }
 
     public void Unwinnable()                // called when a user declares unwinnable
     {
+        // output correct string
         if (!GameWinnable)
         {
             UnwinnableString = "You are right! The game is unwinnable";

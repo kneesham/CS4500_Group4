@@ -122,7 +122,7 @@ using ZooBreakout.Data;
     [Parameter]
     public int DropTargetNumber { get; set; }
 
-    public void OnDrop()
+    public void OnDrop()        // called when an object is dropped in the zone
     {
         if (DragAndDropService.Data != null && DragAndDropService.Accepts(Zone))
         {

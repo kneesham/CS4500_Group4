@@ -111,7 +111,7 @@ using ZooBreakout.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 39 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Summary.razor"
+#line 89 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Summary.razor"
        
     [Parameter]
     public EventCallback<bool> SummaryContinue { get; set; }
