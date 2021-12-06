@@ -142,6 +142,8 @@ using ZooBreakout.Data;
     public void StoryChosen(string name) 
     {
         Name = name;
+        if (Name == "")
+            Name = "Guest";
         MainMenuHidden = true;
         TutorialHidden = false;
     }
@@ -150,6 +152,8 @@ using ZooBreakout.Data;
     public void InfiniteChosen(string name) 
     {
         Name = name;
+        if (Name == "")
+            Name = "Guest";
         MainMenuHidden = true;
         InfiniteHidden = false;
     }

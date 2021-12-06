@@ -42,11 +42,11 @@
                             }
                             else if (card == 1)
                             {
-                                <img class="card1" src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
+                                <img class="card1" src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;">
                             }
                             else
                             {
-                                <img class="card1" src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;opacity:0;" @onclick="() => CardClicked(index)">
+                                <img class="card1" src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;opacity:0;">
                             }
                             <DropTarget T="String" Drop="@OnDrop" DropTargetNumber="@index">
                                     <div class="drop-target">
@@ -176,12 +176,12 @@
                         @* if the user needs to pick the next amount of cards for the next round *@
                         ButtonDisabled = true;
                         <h1 class="display-5">Choose Deck Size</h1>
-                        <p style="font-size:20px">(Between 1 and 15)</p>
+                        <p style="font-size:20px">(Between 3 and 15)</p>
                         <div class="input-group input-group-lg">
                             <input type="number" min="1" max="15" class="form-control" aria-label="Sizing example input" 
                                 aria-describedby="inputGroup-sizing-lg" @bind="NumberofCards" @bind:event="oninput">
                             <a class="st-btn btn-fill" data-toggle="modal" data-target="#" style="margin-top:20px;" @onclick="NextGame">Next Game!</a>
-                            <br><span style="color:red;font-size:15px;" hidden="@MessageHidden">Must be between 1 and 15</span>
+                            <br><span style="color:red;font-size:15px;" hidden="@MessageHidden">Must be between 3 and 15</span>
                         </div>
                     }
                 </div>
@@ -233,9 +233,9 @@
         TheDeck = new Deck(NumberofCards);
         CanStillPlay = true;
         GameWinnable = TheDeck.WinPossible(1);
-        if (!GameWinnable)
+        @* if (!GameWinnable)
             TotalUnwinnables++;
-        TotalGames++;
+        TotalGames++; *@
         // pick random card faces
         for (int i = 0; i < NumberofCards; i++)
             CardFaces[i] = random.Next(Cards.Length);
@@ -264,7 +264,7 @@
     public void NextGame()                      // called when a user completes a game
     {
         // validate user input
-        if (NumberofCards < 1 || NumberofCards > 15)
+        if (NumberofCards < 3 || NumberofCards > 15)
         {
             MessageHidden = false;
             return;

@@ -155,9 +155,14 @@ using ZooBreakout.Data;
         TheDeck = new Deck(NumberofCards);
         CanStillPlay = true;
         GameWinnable = TheDeck.WinPossible(1);
-        if (!GameWinnable)
-            TotalUnwinnables++;
-        TotalGames++;
+        
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 238 "/Users/anthony/Documents/GitHub/CS4500_Group4/Components/Infinite.razor"
+                        
         // pick random card faces
         for (int i = 0; i < NumberofCards; i++)
             CardFaces[i] = random.Next(Cards.Length);
@@ -186,7 +191,7 @@ using ZooBreakout.Data;
     public void NextGame()                      // called when a user completes a game
     {
         // validate user input
-        if (NumberofCards < 1 || NumberofCards > 15)
+        if (NumberofCards < 3 || NumberofCards > 15)
         {
             MessageHidden = false;
             return;

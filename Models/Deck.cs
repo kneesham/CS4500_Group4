@@ -139,8 +139,10 @@ namespace ZooBreakout.Models
         // undoes the last move
         public void UndoLastMove()
         {
+            // if there's been a move
             if (LastCardTouched != -1)
             {
+                // revert changes back
                 Cards[LastCardTouched] = 0;
                 if (LastCardTouched != 0)
                     Cards[LastCardTouched-1] = 1 - Cards[LastCardTouched-1];

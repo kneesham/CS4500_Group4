@@ -24,31 +24,35 @@
 		</div>
 	</div>
 
-	<section id="game">
-		<div id="cards justify-content-center">
-		    @if (!UserWon && GamePossibleToWin)
-            {
-                int count = 0;
-                @* displaying cards *@
-                @foreach(var card in TheDeck.Cards)
-                {
-                    int index = count;
-                    if (card == 0)
+	<section id="game1">
+        <div id="cards1">
+            <div class="row">
+                    @if (!UserWon && GamePossibleToWin)
                     {
-                        <img class="card1" src=@Cards[CardFaces[index]] alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
+                        int count = 0;
+                        @* displaying cards *@
+                        @foreach(var card in TheDeck.Cards)
+                        {
+                            int index = count;
+                            <div class="col justify-content-center">
+                                @if (card == 0)
+                                {
+                                    <img class="card1" src=@Cards[CardFaces[index]] alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
+                                }
+                                else if (card == 1)
+                                {
+                                    <img class="card1" src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;">
+                                }
+                                else
+                                {
+                                    <img class="card1" src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;max-width:200px; opacity:0;">
+                                }
+                            </div> <!-- #cards -->
+                            count++;
+                        }
                     }
-                    else if (card == 1)
-                    {
-                        <img class="card1" src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
-                    }
-                    else
-                    {
-                        <img class="card1" src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;max-width:200px; opacity:0;" @onclick="() => CardClicked(index)">
-                    }
-                    count++;
-                }
-            }
-		</div> <!-- #cards -->
+            </div>
+        </div>
 	</section> <!-- #game -->
 
     @* different popups for scnerios *@

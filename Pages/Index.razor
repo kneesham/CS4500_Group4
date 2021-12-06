@@ -56,6 +56,8 @@
     public void StoryChosen(string name) 
     {
         Name = name;
+        if (Name == "")
+            Name = "Guest";
         MainMenuHidden = true;
         TutorialHidden = false;
     }
@@ -64,6 +66,8 @@
     public void InfiniteChosen(string name) 
     {
         Name = name;
+        if (Name == "")
+            Name = "Guest";
         MainMenuHidden = true;
         InfiniteHidden = false;
     }

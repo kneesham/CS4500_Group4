@@ -43,34 +43,34 @@
                             }
                             else if (card == 1)
                             {
-                                <img class="card1" src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;" @onclick="() => CardClicked(index)">
+                                <img class="card1" src="../img/cards/back_card.png" alt="card" width="100%" style="margin:2px;max-width:200px;">
                             }
                             else
                             {
-                                <img class="card1" src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;opacity:0;max-width:200px;" @onclick="() => CardClicked(index)">
+                                <img class="card1" src="../img/cards/blank_card.png" alt="card" width="100%" style="margin:2px;opacity:0;max-width:200px;">
                             }
                             <DropTarget T="String" Drop="@OnDrop" DropTargetNumber="@index">
                                     <div class="drop-target">
                                         @switch(Chevrons[index])
                                         {
                                             case "greenleft":
-                                                <img src="../img/puzzlepieces/green-end-left.png" alt="chevron" height="75px"> break;
+                                                <img src="../img/puzzlepieces/green-end-left.png" alt="chevron" height="75%" style="max-width:75px;"> break;
                                             case "greenright":
-                                                <img src="../img/puzzlepieces/green-end-right.png" alt="chevron" height="75px"> break;
+                                                <img src="../img/puzzlepieces/green-end-right.png" alt="chevron" height="75%" style="max-width:75px;"> break;
                                             case "orangeleft":
-                                                <img src="../img/puzzlepieces/orange-left.png" alt="chevron" height="75px"> break;
+                                                <img src="../img/puzzlepieces/orange-left.png" alt="chevron" height="75%" style="max-width:75px;"> break;
                                             case "orangeright":
-                                                <img src="../img/puzzlepieces/orange-right.png" alt="chevron" height="75px"> break;
+                                                <img src="../img/puzzlepieces/orange-right.png" alt="chevron" height="75%" style="max-width:75px;"> break;
                                             case "purpleleft":
-                                                <img src="../img/puzzlepieces/purple-left.png" alt="chevron" height="75px"> break;
+                                                <img src="../img/puzzlepieces/purple-left.png" alt="chevron" height="75%" style="max-width:75px;"> break;
                                             case "purpleright":
-                                                <img src="../img/puzzlepieces/purple-right.png" alt="chevron" height="75px"> break;
+                                                <img src="../img/puzzlepieces/purple-right.png" alt="chevron" height="75%" style="max-width:75px;"> break;
                                             case "blue":
-                                                <img src="../img/puzzlepieces/blue-outward.png" alt="chevron" height="60px"> break;
+                                                <img src="../img/puzzlepieces/blue-outward.png" alt="chevron" height="75%" style="max-width:60px;"> break;
                                             case "yellow":
-                                                <img src="../img/puzzlepieces/yellow-piece.png" alt="chevron" height="75px"> break;
+                                                <img src="../img/puzzlepieces/yellow-piece.png" alt="chevron" height="75%" style="max-width:75px;"> break;
                                             default:
-                                                <img src="../img/puzzlepieces/green-end-left.png" alt="chevron" height="75px" style="opacity:0;"> break;
+                                                <img src="../img/puzzlepieces/green-end-left.png" alt="chevron" height="75%" style="opacity:0;max-width:75px;"> break;
                                         }
                                     </div>
                                 </DropTarget>
