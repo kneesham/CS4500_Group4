@@ -233,9 +233,7 @@
         TheDeck = new Deck(NumberofCards);
         CanStillPlay = true;
         GameWinnable = TheDeck.WinPossible(1);
-        @* if (!GameWinnable)
-            TotalUnwinnables++;
-        TotalGames++; *@
+        
         // pick random card faces
         for (int i = 0; i < NumberofCards; i++)
             CardFaces[i] = random.Next(Cards.Length);
